@@ -1,36 +1,52 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
+import HeroBanner from "../components/HeroBanner";
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Home = () => {
-    const [topMovies, setTopMovies] = useState([]);
+  const [topMovies, setTopMovies] = useState([]);
 
-    const getTopRatedMovies = async (url) => {
-        const res = await fetch(url);
-        const data = await res.json();
+  const getTopRatedMovies = async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
+    setTopMovies(data.results);
+  };
 
-       setTopMovies(data.results);
-    };
+  useEffect(() => {
+    const url = `${moviesURL}top_rated?${apiKey}`;
+    getTopRatedMovies(url);
+  }, []);
 
-    useEffect(() => {
-        
-        const topRatedUrl = `${moviesURL}top_rated?${apiKey}`;
-        
-        getTopRatedMovies(topRatedUrl);
+  return (
+    <div className="container-fluid px-4 py-4">
 
-    },[])
+        <HeroBanner />
 
-    return (
-        <div className="container">
-            <h2 className="title">Melhores Filmes:</h2>
-            <div className="movies-container">
-                {topMovies.length === 0 && <p>Carregando...</p>}
-                {topMovies.length > 0 && topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
-            </div>
-        </div>
-    );
+        <h3 className="mt-4 mb-3 fw-bold">
+            Melhores Filmes
+        </h3>
+
+        <div className="row g-3">
+            {topMovies.length === 0 && (
+                <p className="text-center text-light">
+                Carregando...
+                </p>
+        )}
+
+        {topMovies.map((movie) => (
+          <div
+            key={movie.id}
+            className="col-6 col-sm-4 col-md-3 col-lg-2"
+          >
+            <MovieCard movie={movie} />
+          </div>
+        ))}
+      </div>
+
+    </div>
+  );
 };
 
 export default Home;
