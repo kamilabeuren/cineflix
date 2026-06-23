@@ -29,10 +29,10 @@ function Login() {
 
       <div
         className="container-fluid min-vh-100 d-flex justify-content-center align-items-center"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, #10224d 0%, #050b1c 35%, #000000 75%)",
-        }}
+          style={{
+            background:
+                "radial-gradient(ellipse at center, #2b2b2b 0%, #111111 40%, #000000 80%)",
+          }}
       >
         <div
           className="card bg-dark text-light border-0 shadow"
@@ -72,7 +72,7 @@ function Login() {
               <div className="text-end mb-3">
                 <Link
                   to="#"
-                  className="text-decoration-none text-secondary"
+                  className="text-white-50 text-decoration-none"
                 >
                   Esqueceu sua senha?
                 </Link>
@@ -80,7 +80,7 @@ function Login() {
 
               <button
                 type="submit"
-                className="btn btn-primary w-100"
+                className="btn btn-danger w-100 fw-bold"
               >
                 Entrar
               </button>
@@ -92,7 +92,7 @@ function Login() {
               Não possui conta?{" "}
               <Link
                 to="/cadastro"
-                className="text-decoration-none"
+                className="text-white fw-bold text-decoration-none"
               >
                 Cadastre-se
               </Link>

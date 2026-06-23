@@ -10,7 +10,7 @@ function FormInput({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-      className="form-control"
+      className="form-control bg-secondary bg-opacity-25 text-white border-0"
       required
     />
   );
