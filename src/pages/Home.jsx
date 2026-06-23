@@ -24,8 +24,8 @@ const Home = () => {
 
         <HeroBanner />
 
-        <h3 className="mt-4 mb-3 fw-bold">
-            Melhores Filmes
+        <h3 className="mt-4 mb-3 fw-bold text-white">
+          Melhores Filmes
         </h3>
 
         <div className="row g-3">

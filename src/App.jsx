@@ -1,16 +1,20 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Cadastro from './pages/Cadastro'
-import Detalhes from './pages/Detalhes'
-import Favoritos from './pages/Favoritos'
-import Admin from './pages/Admin'
-import AdminEditar from './pages/AdminEditar'
+import Navbar from "./components/Navbar";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro";
+import Detalhes from "./pages/Detalhes";
+import Favoritos from "./pages/Favoritos";
+import Admin from "./pages/Admin";
+import AdminEditar from "./pages/AdminEditar";
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -21,7 +25,7 @@ function App() {
         <Route path="/admin/editar/:id" element={<AdminEditar />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
