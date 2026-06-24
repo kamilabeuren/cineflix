@@ -14,7 +14,6 @@ function Navbar() {
       }}
     >
       <div className="container-fluid d-flex align-items-center justify-content-between">
-        {/* Logo */}
         <Link className="navbar-brand m-0 p-0" to="/">
           <img
             src={logo}
@@ -23,7 +22,6 @@ function Navbar() {
           />
         </Link>
 
-        {/* Links principais */}
         <div className="d-flex gap-4">
           <Link
             to="/"
