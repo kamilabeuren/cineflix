@@ -13,57 +13,53 @@ function Navbar() {
         boxShadow: "0 2px 10px rgba(0,0,0,0.5)",
       }}
     >
-      <div className="container-fluid">
-
-        {/* LOGO */}
-        <Link className="navbar-brand p-0 m-0 d-flex align-items-center" to="/">
-          <img
-            src={logo}
-            alt="CineFlix"
-            style={{ height: "80px", objectFit: "contain" }}
+    <div className="container-fluid">
+      <Link className="navbar-brand p-0 m-0 d-flex align-items-center" to="/">
+        <img
+          src={logo}
+          alt="CineFlix"
+          style={{ height: "80px", objectFit: "contain" }}
           />
-        </Link>
+      </Link>
 
-        {/* LINKS CENTRALIZADOS */}
-        <div className="d-flex gap-4 mx-auto">
-          <Link
-            to="/"
-            className={`text-decoration-none fw-semibold ${
-              location.pathname === "/" ? "text-danger" : "text-white"
-            }`}
-          >
-            Início
-          </Link>
+    <div className="d-flex gap-4 mx-auto">
+      <Link
+        to="/"
+        className={`text-decoration-none fw-semibold ${
+        location.pathname === "/" ? "text-danger" : "text-white"
+        }`}
+      >
+        Início
+      </Link>
 
-          <Link
-            to="/filmes"
-            className={`text-decoration-none fw-semibold ${
-              location.pathname === "/filmes" ? "text-danger" : "text-white"
-            }`}
-          >
-            Filmes
-          </Link>
-
-          <Link
-            to="/series"
-            className={`text-decoration-none fw-semibold ${
-              location.pathname === "/series" ? "text-danger" : "text-white"
-            }`}
-          >
-            Séries
-          </Link>
-        </div>
-
-        {/* BOTÃO */}
-        <Link
-          to={location.pathname === "/login" ? "/cadastro" : "/login"}
-          className="btn btn-danger btn-sm fw-bold px-3"
+      <Link
+        to="/filmes"
+        className={`text-decoration-none fw-semibold ${
+        location.pathname === "/filmes" ? "text-danger" : "text-white"
+        }`}
         >
-          {location.pathname === "/login" ? "Criar conta" : "Entrar"}
-        </Link>
+        Filmes
+      </Link>
 
-      </div>
-    </nav>
+      <Link
+        to="/series"
+        className={`text-decoration-none fw-semibold ${
+        location.pathname === "/series" ? "text-danger" : "text-white"
+        }`}
+      >
+        Séries
+      </Link>
+    </div>
+
+    <Link
+      to={location.pathname === "/login" ? "/cadastro" : "/login"}
+      className="btn btn-danger btn-sm fw-bold px-3"
+    >
+      {location.pathname === "/login" ? "Criar conta" : "Entrar"}
+    </Link>
+
+  </div>
+  </nav>
   );
 }
 
