@@ -4,37 +4,60 @@ import banner from "../assets/banner.jpg";
 const HeroBanner = () => {
   return (
     <div
-      className="position-relative text-white d-flex align-items-end"
+      className="position-relative overflow-hidden"
       style={{
-        height: "min(70vh, 520px)",
+        height: "min(85vh, 520px)",
         backgroundImage: `url(${banner})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         borderRadius: "12px",
-        overflow: "hidden",
       }}
     >
-      
-      <div
-        className="w-100 p-4 p-md-5"
-        style={{
-          background:
-            "linear-gradient(to top, rgba(0,0,0,0.85), transparent)",
-        }}
-      >
-        <h1 className="fw-bold display-5">
-          Filmes que você vai adorar
-        </h1>
 
-        <p className="text-light col-12 col-md-6 d-none d-md-block">
-          Os melhores filmes, séries e histórias em um só lugar.
-        </p>
+    <div
+      className="position-absolute w-100 h-100"
+      style={{
+        top: 0,
+        left: 0,
+        background:
+          "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.75) 25%, transparent 60%)",
+      }}
+    />
 
-        <Link className="btn btn-danger mt-3">
-          Explorar agora
-        </Link>
-      </div>
+    <div
+      className="position-absolute w-100 text-center text-white"
+      style={{
+        bottom: "20px",
+        zIndex: 2,
+      }}
+    >
+
+    <h1
+      className="fw-bold mb-3"
+      style={{
+        fontSize: "3rem",
+        textShadow:"0 4px 12px rgba(0,0,0,0.9), 0 8px 24px rgba(0,0,0,0.8)",
+      }}
+    >
+      Filmes que você vai adorar!
+    </h1>
+
+    <p
+      className="mx-auto mb-4"
+      style={{
+        maxWidth: "600px",
+        fontSize: "1.1rem",
+        textShadow: "0 2px 8px rgba(0,0,0,0.9)",
+      }}
+    >
+      Os melhores filmes, séries e histórias em um só lugar.
+    </p>
+
+    <Link className="btn btn-danger px-4 py-2">
+      Explorar agora
+    </Link>
     </div>
+  </div>
   );
 };
 
