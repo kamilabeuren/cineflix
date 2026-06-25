@@ -8,58 +8,60 @@ function Navbar() {
     <nav
       className="navbar navbar-expand-lg fixed-top px-4"
       style={{
-        background: "rgba(0,0,0,0.9)",
-        height: "70px",
+        background: "linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.98), rgba(0,0,0,0.95), rgba(0,0,0,0.92))",
+        height: "90px",
         boxShadow: "0 2px 10px rgba(0,0,0,0.5)",
       }}
     >
-      <div className="container-fluid d-flex align-items-center justify-content-between">
-        <Link className="navbar-brand m-0 p-0" to="/">
+      <div className="container-fluid">
+
+        {/* LOGO */}
+        <Link className="navbar-brand p-0 m-0 d-flex align-items-center" to="/">
           <img
             src={logo}
             alt="CineFlix"
-            style={{ height: "50px", objectFit: "contain" }}
+            style={{ height: "80px", objectFit: "contain" }}
           />
         </Link>
 
-        <div className="d-flex gap-4">
+        {/* LINKS CENTRALIZADOS */}
+        <div className="d-flex gap-4 mx-auto">
           <Link
             to="/"
-            className="text-white text-decoration-none fw-semibold nav-link-custom"
+            className={`text-decoration-none fw-semibold ${
+              location.pathname === "/" ? "text-danger" : "text-white"
+            }`}
           >
             Início
           </Link>
+
           <Link
             to="/filmes"
-            className="text-white text-decoration-none fw-semibold nav-link-custom"
+            className={`text-decoration-none fw-semibold ${
+              location.pathname === "/filmes" ? "text-danger" : "text-white"
+            }`}
           >
             Filmes
           </Link>
+
           <Link
             to="/series"
-            className="text-white text-decoration-none fw-semibold nav-link-custom"
+            className={`text-decoration-none fw-semibold ${
+              location.pathname === "/series" ? "text-danger" : "text-white"
+            }`}
           >
             Séries
           </Link>
         </div>
 
-        {location.pathname === "/login" ? (
-          <Link
-            to="/cadastro"
-            className="btn btn-danger fw-bold px-3 py-1"
-            style={{ fontSize: "clamp(0.8rem, 2vw, 1rem)" }}
-          >
-            Criar conta
-          </Link>
-        ) : (
-          <Link
-            to="/login"
-            className="btn btn-danger fw-bold px-3 py-1"
-            style={{ fontSize: "clamp(0.8rem, 2vw, 1rem)" }}
-          >
-            Entrar
-          </Link>
-        )}
+        {/* BOTÃO */}
+        <Link
+          to={location.pathname === "/login" ? "/cadastro" : "/login"}
+          className="btn btn-danger btn-sm fw-bold px-3"
+        >
+          {location.pathname === "/login" ? "Criar conta" : "Entrar"}
+        </Link>
+
       </div>
     </nav>
   );

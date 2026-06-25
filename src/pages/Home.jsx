@@ -27,7 +27,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="container-fluid px-4 py-4">
+    <div className="container-fluid px-4 py-5">
       
       <HeroBanner />
 
