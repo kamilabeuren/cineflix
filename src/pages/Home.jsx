@@ -28,30 +28,46 @@ const Home = () => {
 
   return (
     <div className="container-fluid px-4 py-5">
-      
       <HeroBanner />
 
-      <h3 className="mt-4 mb-3 fw-bold text-white">
-        Melhores Filmes
-      </h3>
-
-      <div className="row g-2">
-        {loading && (
-          <p className="text-center text-light">
-            Carregando...
-          </p>
-        )}
-
-        {!loading &&
-          topMovies.slice(0, 8).map((movie) => (
-            <div
-              key={movie.id}
-              className="col-6 col-md-3"
-            >
-              <MovieCard movie={movie} />
-            </div>
-          ))}
+    <div className="mt-5">
+      <div className="d-flex align-items-center mb-4">
+        <div
+          style={{
+            width: "5px",
+            height: "32px",
+            backgroundColor: "#ffc107",
+            borderRadius: "4px",
+            marginRight: "12px",
+          }}
+        />
+        <h4 className="fw-bold text-white mb-0">
+          Melhores Filmes
+        </h4>
       </div>
+    </div>
+
+  <div className="row g-3">
+
+        <div className="row g-2">
+          {loading && (
+            <p className="text-center text-light">
+              Carregando...
+            </p>
+          )}
+
+          {!loading &&
+            topMovies.slice(0, 4).map((movie) => (
+              <div
+                key={movie.id}
+                className="col-6 col-md-3"
+              >
+                <MovieCard movie={movie} />
+              </div>
+            ))}
+        </div>
+      </div>
+      <div className="mt-5"></div>
 
     </div>
   );
