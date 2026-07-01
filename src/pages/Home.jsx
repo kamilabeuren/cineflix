@@ -10,6 +10,7 @@ const Home = () => {
   const [topMovies, setTopMovies] = useState([]);
   const [newMovies, setNewMovies] = useState([]);
   const [featuredSeries, setFeaturedSeries] = useState([]);
+  const [newSeries, setNewSeries] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getMovies = async (url, setState) => {
@@ -25,13 +26,16 @@ const Home = () => {
   useEffect(() => {
     const topRatedUrl = `${moviesURL}top_rated?${apiKey}`;
     const nowPlayingUrl = `${moviesURL}now_playing?${apiKey}`;
+    const newSeriesUrl = `https://api.themoviedb.org/3/tv/on_the_air?${apiKey}`;
     const featuredSeriesUrl =
     `https://api.themoviedb.org/3/trending/tv/week?${apiKey}`;
 
     Promise.all([
       getMovies(topRatedUrl, setTopMovies),
       getMovies(nowPlayingUrl, setNewMovies),
-       getMovies(featuredSeriesUrl, setFeaturedSeries),
+      getMovies(newSeriesUrl, setNewSeries),
+      getMovies(featuredSeriesUrl, setFeaturedSeries),
+      
     ]).finally(() => setLoading(false));
   }, []);
 
@@ -52,13 +56,19 @@ const Home = () => {
       />
 
       <MovieSection
-      title="Séries em Destaque"
-      movies={featuredSeries}
-      loading={loading}
-    />
+        title="Séries em Destaque"
+        movies={featuredSeries}
+        loading={loading}
+      />
+
+      <MovieSection
+        title="Lançamento de Séries"
+        movies={newSeries}
+        loading={loading}
+      />
 
     <Footer />
-    
+
     </div>
   );
 };
