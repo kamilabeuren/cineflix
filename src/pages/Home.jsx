@@ -1,74 +1,50 @@
 import { useState, useEffect } from "react";
-import MovieCard from "../components/MovieCard";
 import HeroBanner from "../components/HeroBanner";
+import MovieSection from "../components/MovieSection";
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Home = () => {
   const [topMovies, setTopMovies] = useState([]);
+  const [newMovies, setNewMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const getTopRatedMovies = async (url) => {
+  const getMovies = async (url, setState) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      setTopMovies(data.results || []);
+      setState(data.results || []);
     } catch (error) {
       console.error("Erro ao buscar filmes:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
-    const url = `${moviesURL}top_rated?${apiKey}`;
-    getTopRatedMovies(url);
+    const topRatedUrl = `${moviesURL}top_rated?${apiKey}`;
+    const nowPlayingUrl = `${moviesURL}now_playing?${apiKey}`;
+
+    Promise.all([
+      getMovies(topRatedUrl, setTopMovies),
+      getMovies(nowPlayingUrl, setNewMovies),
+    ]).finally(() => setLoading(false));
   }, []);
 
   return (
     <div className="container-fluid px-4 py-5">
       <HeroBanner />
 
-    <div className="mt-5">
-      <div className="d-flex align-items-center mb-4">
-        <div
-          style={{
-            width: "5px",
-            height: "32px",
-            backgroundColor: "#ffc107",
-            borderRadius: "4px",
-            marginRight: "12px",
-          }}
-        />
-        <h4 className="fw-bold text-white mb-0">
-          Melhores Filmes
-        </h4>
-      </div>
-    </div>
+      <MovieSection
+        title="Melhores Filmes"
+        movies={topMovies}
+        loading={loading}
+      />
 
-  <div className="row g-3">
-
-        <div className="row g-2">
-          {loading && (
-            <p className="text-center text-light">
-              Carregando...
-            </p>
-          )}
-
-          {!loading &&
-            topMovies.slice(0, 4).map((movie) => (
-              <div
-                key={movie.id}
-                className="col-6 col-md-3"
-              >
-                <MovieCard movie={movie} />
-              </div>
-            ))}
-        </div>
-      </div>
-      <div className="mt-5"></div>
-
+      <MovieSection
+        title="Lançamentos"
+        movies={newMovies}
+        loading={loading}
+      />
     </div>
   );
 };
