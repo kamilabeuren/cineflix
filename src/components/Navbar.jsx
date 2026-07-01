@@ -39,13 +39,12 @@ function Navbar() {
               src={logo}
               alt="CineFlix"
               style={{
-                height: "80px",
+                height: "60px",
                 objectFit: "contain",
               }}
             />
           </Link>
 
-          {/* Busca + Usuário */}
           <div className="d-flex align-items-center gap-3">
 
             <button

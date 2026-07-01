@@ -49,10 +49,6 @@ const HeroBanner = () => {
       >
         Os melhores filmes, séries e histórias em um só lugar.
       </p>
-
-      <Link to="/" className="btn btn-danger btn-sm fw-bold px-3">
-        Explorar agora
-      </Link>
     </div>
     </div>
   );
