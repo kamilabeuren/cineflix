@@ -8,6 +8,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const Home = () => {
   const [topMovies, setTopMovies] = useState([]);
   const [newMovies, setNewMovies] = useState([]);
+  const [featuredSeries, setFeaturedSeries] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const getMovies = async (url, setState) => {
@@ -23,10 +24,13 @@ const Home = () => {
   useEffect(() => {
     const topRatedUrl = `${moviesURL}top_rated?${apiKey}`;
     const nowPlayingUrl = `${moviesURL}now_playing?${apiKey}`;
+    const featuredSeriesUrl =
+    `https://api.themoviedb.org/3/trending/tv/week?${apiKey}`;
 
     Promise.all([
       getMovies(topRatedUrl, setTopMovies),
       getMovies(nowPlayingUrl, setNewMovies),
+       getMovies(featuredSeriesUrl, setFeaturedSeries),
     ]).finally(() => setLoading(false));
   }, []);
 
@@ -45,6 +49,12 @@ const Home = () => {
         movies={newMovies}
         loading={loading}
       />
+
+      <MovieSection
+      title="Séries em Destaque"
+      movies={featuredSeries}
+      loading={loading}
+    />
     </div>
   );
 };

@@ -17,7 +17,7 @@ const MovieCard = ({ movie }) => {
 
       <div className="movie-overlay">
         <h6 className="movie-title text-truncate">
-          {movie.title}
+          {movie.title || movie.name}
         </h6>
       </div>
 
