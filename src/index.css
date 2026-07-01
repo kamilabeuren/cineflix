@@ -49,3 +49,11 @@ body {
   text-shadow: 0 2px 8px rgba(0,0,0,0.8);
   font-size: 0.8rem;
 }
+
+footer a {
+  transition: 0.3s;
+}
+
+footer a:hover {
+  color: #ffc107 !important;
+}

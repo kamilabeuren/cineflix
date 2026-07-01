@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import HeroBanner from "../components/HeroBanner";
 import MovieSection from "../components/MovieSection";
+import Footer from "../components/Footer";
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -55,6 +56,9 @@ const Home = () => {
       movies={featuredSeries}
       loading={loading}
     />
+
+    <Footer />
+    
     </div>
   );
 };
