@@ -1,65 +1,137 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import {
+  FaBars,
+  FaSearch,
+  FaRegUser,
+} from "react-icons/fa";
 import logo from "../assets/logo-cineflix.png";
 
 function Navbar() {
-  const location = useLocation();
-
   return (
-    <nav
-      className="navbar navbar-expand-lg fixed-top px-4"
-      style={{
-        background: "linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.98), rgba(0,0,0,0.95), rgba(0,0,0,0.92))",
-        height: "90px",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.5)",
-      }}
-    >
-    <div className="container-fluid">
-      <Link className="navbar-brand p-0 m-0 d-flex align-items-center" to="/">
-        <img
-          src={logo}
-          alt="CineFlix"
-          style={{ height: "80px", objectFit: "contain" }}
-          />
-      </Link>
-
-    <div className="d-flex gap-4 mx-auto">
-      <Link
-        to="/"
-        className={`text-decoration-none fw-semibold ${
-        location.pathname === "/" ? "text-danger" : "text-white"
-        }`}
+    <>
+      <nav
+        className="navbar fixed-top px-4"
+        style={{
+          background:
+            "linear-gradient(to bottom, #111111, #000000)",
+          height: "90px",
+          borderBottom: "1px solid #000000",
+        }}
       >
-        Início
-      </Link>
+        <div className="container-fluid d-flex align-items-center justify-content-between">
 
-      <Link
-        to="/filmes"
-        className={`text-decoration-none fw-semibold ${
-        location.pathname === "/filmes" ? "text-danger" : "text-white"
-        }`}
-        >
-        Filmes
-      </Link>
+          {/* Menu Hamburguer */}
+          <button
+            className="btn text-white border-0 p-0"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#menuLateral"
+          >
+            <FaBars size={28} />
+          </button>
 
-      <Link
-        to="/series"
-        className={`text-decoration-none fw-semibold ${
-        location.pathname === "/series" ? "text-danger" : "text-white"
-        }`}
+          {/* Logo Centralizada */}
+          <Link
+            to="/"
+            className="position-absolute start-50 translate-middle-x"
+          >
+            <img
+              src={logo}
+              alt="CineFlix"
+              style={{
+                height: "80px",
+                objectFit: "contain",
+              }}
+            />
+          </Link>
+
+          {/* Busca + Usuário */}
+          <div className="d-flex align-items-center gap-3">
+
+            <button
+              className="btn text-white border-0 p-0"
+            >
+              <FaSearch size={22} />
+            </button>
+
+            <div
+              style={{
+                width: "1px",
+                height: "24px",
+                background: "#444",
+              }}
+            />
+
+            <button
+              className="btn text-white border-0 p-0"
+            >
+              <FaRegUser size={22} />
+            </button>
+
+          </div>
+        </div>
+      </nav>
+
+      {/* Menu Lateral */}
+      <div
+        className="offcanvas offcanvas-start text-bg-dark"
+        tabIndex="-1"
+        id="menuLateral"
       >
-        Séries
-      </Link>
-    </div>
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title">
+            CineFlix
+          </h5>
 
-    <Link
-      to={location.pathname === "/login" ? "/cadastro" : "/login"}
-      className="btn btn-danger btn-sm fw-bold px-3"
-    >
-      {location.pathname === "/login" ? "Criar conta" : "Entrar"}
-    </Link>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            data-bs-dismiss="offcanvas"
+          ></button>
+        </div>
 
-  </div>
-  </nav>
+        <div className="offcanvas-body">
+          <div className="d-flex flex-column gap-4">
+
+            <Link
+              to="/"
+              className="text-white text-decoration-none"
+            >
+              Início
+            </Link>
+
+            <Link
+              to="/filmes"
+              className="text-white text-decoration-none"
+            >
+              Filmes
+            </Link>
+
+            <Link
+              to="/series"
+              className="text-white text-decoration-none"
+            >
+              Séries
+            </Link>
+
+            <Link
+              to="/favoritos"
+              className="text-white text-decoration-none"
+            >
+              Favoritos
+            </Link>
+
+            <Link
+              to="/conta"
+              className="text-white text-decoration-none"
+            >
+              Minha Conta
+            </Link>
+
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
