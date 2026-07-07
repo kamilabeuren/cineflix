@@ -58,3 +58,20 @@ footer a {
 footer a:hover {
   color: #ffc107 !important;
 }
+
+.navbar-cineflix {
+  background: linear-gradient(to bottom, #111111, #000000);
+  height: 90px;
+  border-bottom: 1px solid #000000;
+}
+
+.logo-cineflix {
+  height: 60px;
+  object-fit: contain;
+}
+
+.navbar-divider {
+  width: 1px;
+  height: 24px;
+  background: #444;
+}

@@ -9,18 +9,9 @@ import logo from "../assets/logo-cineflix.png";
 function Navbar() {
   return (
     <>
-      <nav
-        className="navbar fixed-top px-4"
-        style={{
-          background:
-            "linear-gradient(to bottom, #111111, #000000)",
-          height: "90px",
-          borderBottom: "1px solid #000000",
-        }}
-      >
+      <nav className="navbar navbar-cineflix fixed-top px-4">
         <div className="container-fluid d-flex align-items-center justify-content-between">
 
-          {/* Menu Hamburguer */}
           <button
             className="btn text-white border-0 p-0"
             type="button"
@@ -30,7 +21,6 @@ function Navbar() {
             <FaBars size={28} />
           </button>
 
-          {/* Logo Centralizada */}
           <Link
             to="/"
             className="position-absolute start-50 translate-middle-x"
@@ -38,10 +28,7 @@ function Navbar() {
             <img
               src={logo}
               alt="CineFlix"
-              style={{
-                height: "60px",
-                objectFit: "contain",
-              }}
+              className="logo-cineflix"
             />
           </Link>
 
@@ -53,25 +40,19 @@ function Navbar() {
               <FaSearch size={22} />
             </button>
 
-            <div
-              style={{
-                width: "1px",
-                height: "24px",
-                background: "#444",
-              }}
-            />
+            <div className="navbar-divider"></div>
 
-            <button
+            <Link
+              to="/login"
               className="btn text-white border-0 p-0"
             >
-              <FaRegUser size={22} />
-            </button>
+            <FaRegUser size={22} />
+            </Link>
 
           </div>
         </div>
       </nav>
 
-      {/* Menu Lateral */}
       <div
         className="offcanvas offcanvas-start text-bg-dark"
         tabIndex="-1"
