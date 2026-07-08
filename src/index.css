@@ -5,6 +5,208 @@ body {
   color: white;
 }
 
+.navbar-cineflix {
+  min-height: 65px;
+  background: linear-gradient(to bottom, #111111, #000000);
+  border-bottom: 1px solid #000000;
+}
+
+.navbar-logo {
+  height: 42px;
+  object-fit: contain;
+}
+
+.search-wrapper {
+  position: relative;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 43px;
+  transition: 0.25s ease;
+}
+
+.search-wrapper.open {
+  flex: 1 1 120px;
+  width: 100%;
+  max-width: 230px;
+  min-width: 105px;
+}
+
+.search-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 40px;
+  height: 100%;
+  padding: 0;
+  color: #ffffff;
+  background: transparent;
+  border: 0;
+  opacity: 0.9;
+}
+
+.search-input {
+  height: 43px;
+  width: 100%;
+  padding-left: 36px !important;
+  color: #ffffff !important;
+  background-color: #212529 !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.25s ease;
+}
+
+.search-wrapper.open .search-input {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.search-input::placeholder {
+  color: #212529;
+}
+
+.search-input:focus {
+  border-color: #212529 !important;
+  background: #212529 !important;
+}
+
+.navbar-divider {
+  width: 1px;
+  height: 48px;
+  background: #242424;
+}
+
+.menu-cineflix {
+  width: min(262px, 88vw) !important;
+  color: #ffffff;
+  background: #000000 !important;
+  border-right: 0 !important;
+}
+
+.menu-login-area {
+  position: relative;
+  padding: 48px 24px 24px;
+  background: #212529;
+  border-bottom: 1px solid #242424;
+}
+
+.menu-login-area h5 {
+  margin: 0 28px 10px 0;
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.menu-login-area p {
+  margin: 0 0 18px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.menu-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 12px;
+  height: 12px;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.menu-login-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 33px;
+  color: #ffffff;
+  background: #dc3545;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.menu-login-button:hover {
+  color: #ffffff;
+  background: #bb2d3b;
+}
+
+.menu-body {
+  padding: 18px 0 !important;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 42px;
+  padding: 0 24px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.menu-links a:hover {
+  color: #ffffff;
+  background: #212529;
+}
+
+.menu-links svg {
+  flex: 0 0 auto;
+  font-size: 0.95rem;
+  color: #dc3545;
+}
+
+.menu-links span {
+  flex: 1;
+}
+
+.menu-arrow {
+  color: #dc3545 !important;
+  font-size: 0.72rem !important;
+}
+
+@media (max-width: 575.98px) {
+  .navbar-logo {
+    height: 34px;
+  }
+
+  .search-wrapper {
+    height: 38px;
+    min-width: 105px;
+  }
+
+  .search-wrapper:not(.open) {
+    flex-basis: 36px;
+    width: 36px;
+    min-width: 36px;
+  }
+
+  .search-button {
+    width: 36px;
+  }
+
+  .search-input {
+    height: 38px;
+    font-size: 0.875rem;
+  }
+
+  .navbar-divider {
+    height: 36px;
+  }
+}
+
 .movie-card {
   position: relative;
   display: block;
@@ -57,21 +259,4 @@ footer a {
 
 footer a:hover {
   color: #ffc107 !important;
-}
-
-.navbar-cineflix {
-  background: linear-gradient(to bottom, #111111, #000000);
-  height: 90px;
-  border-bottom: 1px solid #000000;
-}
-
-.logo-cineflix {
-  height: 60px;
-  object-fit: contain;
-}
-
-.navbar-divider {
-  width: 1px;
-  height: 24px;
-  background: #444;
 }
