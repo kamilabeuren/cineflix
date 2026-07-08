@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
-import Navbar from "../components/Navbar";
+import logo from "../assets/logo-cineflix.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -25,8 +25,6 @@ function Login() {
 
   return (
     <>
-      <Navbar />
-
       <div
         className="container-fluid min-vh-100 d-flex justify-content-center align-items-center"
           style={{
@@ -42,9 +40,15 @@ function Login() {
           }}
         >
           <div className="card-body p-4 p-md-5">
-            <h1 className="text-center fw-bold mb-3">
-              Entre
-            </h1>
+            <div className="text-center mb-4">
+              <Link to="/">
+                <img
+                  src={logo}
+                  alt="CineFlix"
+                  className="login-logo"
+                />
+              </Link>
+            </div>
 
             <p className="text-center text-secondary mb-4">
               Digite seu endereço de e-mail e senha para continuar.

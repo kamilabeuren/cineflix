@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 
@@ -10,10 +10,13 @@ import Favoritos from "./pages/Favoritos";
 import Admin from "./pages/Admin";
 import AdminEditar from "./pages/AdminEditar";
 
-function App() {
+function AppRoutes() {
+  const location = useLocation();
+  const esconderNavbar = location.pathname === "/login";
+
   return (
-    <BrowserRouter>
-      <Navbar />
+    <>
+      {!esconderNavbar && <Navbar />}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -24,6 +27,14 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/editar/:id" element={<AdminEditar />} />
       </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

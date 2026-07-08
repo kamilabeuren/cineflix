@@ -260,3 +260,8 @@ footer a {
 footer a:hover {
   color: #ffc107 !important;
 }
+
+.login-logo {
+  height: 55px;
+  object-fit: contain;
+}
