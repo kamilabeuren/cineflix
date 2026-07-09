@@ -1,6 +1,11 @@
 import MovieCard from "./MovieCard";
 
-const MovieSection = ({ title, movies, loading }) => {
+const MovieSection = ({
+  title,
+  movies,
+  loading,
+  onMovieClick,
+}) => {
   return (
     <div className="mt-5">
       <div className="d-flex align-items-center mb-4">
@@ -30,7 +35,10 @@ const MovieSection = ({ title, movies, loading }) => {
               key={movie.id}
               className="col-6 col-md-3"
             >
-              <MovieCard movie={movie} />
+              <MovieCard
+                movie={movie}
+                onMovieClick={onMovieClick}
+              />
             </div>
           ))
         )}
