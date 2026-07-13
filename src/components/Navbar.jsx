@@ -109,7 +109,7 @@ function Navbar() {
 
         <div className="offcanvas-body menu-body">
           <nav className="menu-links">
-            <Link to="/login" data-bs-dismiss="offcanvas">
+            <Link to="/login">
               <FaSignInAlt />
               <span>Login</span>
               <FaChevronRight className="menu-arrow" />

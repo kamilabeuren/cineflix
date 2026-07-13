@@ -64,7 +64,8 @@ body {
 }
 
 .search-input::placeholder {
-  color: #212529;
+  color: #b3b3b3 !important;
+  opacity: 1;
 }
 
 .search-input:focus {
