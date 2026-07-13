@@ -33,10 +33,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const topRatedUrl = `${moviesURL}top_rated?${apiKey}`;
-    const nowPlayingUrl = `${moviesURL}now_playing?${apiKey}`;
-    const newSeriesUrl = `https://api.themoviedb.org/3/tv/on_the_air?${apiKey}`;
-    const featuredSeriesUrl = `https://api.themoviedb.org/3/trending/tv/week?${apiKey}`;
+    const topRatedUrl = `${moviesURL}top_rated?${apiKey}&language=pt-BR`;
+    const nowPlayingUrl = `${moviesURL}now_playing?${apiKey}&language=pt-BR`;
+    const newSeriesUrl = `https://api.themoviedb.org/3/tv/on_the_air?${apiKey}&language=pt-BR`;
+    const featuredSeriesUrl = `https://api.themoviedb.org/3/trending/tv/week?${apiKey}&language=pt-BR`;
 
     Promise.all([
       getMovies(topRatedUrl, setTopMovies),
