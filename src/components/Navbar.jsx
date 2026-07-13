@@ -102,7 +102,6 @@ function Navbar() {
           <Link
             to="/login"
             className="menu-login-button"
-            data-bs-dismiss="offcanvas"
           >
             Entrar
           </Link>
