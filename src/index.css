@@ -326,3 +326,10 @@ footer a:hover {
   height: 55px;
   object-fit: contain;
 }
+
+.form-input-cineflix::placeholder {
+  color: #6c757d  !important;
+  opacity: 1  !important;
+  font-size: 1rem  !important;
+  font-weight: 400  !important;
+}
