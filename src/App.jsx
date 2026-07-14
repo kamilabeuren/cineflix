@@ -9,6 +9,7 @@ import Detalhes from "./pages/Detalhes";
 import Favoritos from "./pages/Favoritos";
 import Admin from "./pages/Admin";
 import AdminEditar from "./pages/AdminEditar";
+import MinhaConta from "./pages/MinhaConta";
 
 function AppRoutes() {
   const location = useLocation();
@@ -26,7 +27,8 @@ function AppRoutes() {
         <Route path="/favoritos" element={<Favoritos />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/editar/:id" element={<AdminEditar />} />
-      </Routes>
+        <Route path="/minha-conta" element={<MinhaConta />} />
+       </Routes>
     </>
   );
 }

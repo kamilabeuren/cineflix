@@ -12,11 +12,41 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // ADMIN DE TESTE
     if (
       email === "admin@cineflix.com" &&
       senha === "123456"
     ) {
-      localStorage.setItem("usuarioLogado", "true");
+      const admin = {
+        nome: "Administrador",
+        email: "admin@cineflix.com",
+        role: "admin",
+      };
+
+      localStorage.setItem(
+        "usuarioLogado",
+        JSON.stringify(admin)
+      );
+
+      navigate("/");
+      return;
+    }
+
+    // USUÁRIO CADASTRADO
+    const usuario = JSON.parse(
+      localStorage.getItem("usuario")
+    );
+
+    if (
+      usuario &&
+      email === usuario.email &&
+      senha === usuario.senha
+    ) {
+      localStorage.setItem(
+        "usuarioLogado",
+        JSON.stringify(usuario)
+      );
+
       navigate("/");
     } else {
       alert("E-mail ou senha inválidos");

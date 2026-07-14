@@ -16,11 +16,17 @@ function Cadastro() {
       return;
     }
 
-    console.log({
+    const novoUsuario = {
       nome,
       email,
       senha,
-    });
+      role: "user",
+    };
+
+    localStorage.setItem(
+      "usuario",
+      JSON.stringify(novoUsuario)
+    );
 
     alert("Cadastro realizado com sucesso!");
   };

@@ -79,6 +79,8 @@ function Navbar() {
               <Link to="/login" className="btn text-white border-0 p-0">
                 <FaRegUser size={22} />
               </Link>
+
+
             </div>
           </div>
         </div>
@@ -112,6 +114,12 @@ function Navbar() {
             <Link to="/login">
               <FaSignInAlt />
               <span>Login</span>
+              <FaChevronRight className="menu-arrow" />
+            </Link>
+
+            <Link to="/minha-conta">
+              <FaRegUser />
+              <span>Minha Conta</span>
               <FaChevronRight className="menu-arrow" />
             </Link>
 
