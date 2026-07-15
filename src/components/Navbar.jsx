@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaBars,
   FaChevronRight,
@@ -13,7 +13,10 @@ import logo from "../assets/logo-cineflix.png";
 
 function Navbar() {
   const [mostrarBusca, setMostrarBusca] = useState(false);
+  const [busca, setBusca] = useState("");
+
   const inputBuscaRef = useRef(null);
+  const navigate = useNavigate();
 
   const usuarioLogado = JSON.parse(
     localStorage.getItem("usuarioLogado")
@@ -33,6 +36,14 @@ function Navbar() {
 
       return !buscaAberta;
     });
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    if (!busca.trim()) return;
+
+    navigate(`/search?q=${encodeURIComponent(busca)}`);
   };
 
   return (
@@ -68,7 +79,7 @@ function Navbar() {
                   mostrarBusca ? "open" : ""
                 }`}
                 role="search"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={handleSearch}
               >
                 <button
                   type="button"
@@ -82,7 +93,11 @@ function Navbar() {
                   ref={inputBuscaRef}
                   type="text"
                   className="form-control search-input"
-                  placeholder="Buscar"
+                  placeholder="Buscar filme ou série"
+                  value={busca}
+                  onChange={(e) =>
+                    setBusca(e.target.value)
+                  }
                   tabIndex={mostrarBusca ? 0 : -1}
                 />
               </form>
@@ -121,9 +136,7 @@ function Navbar() {
             <>
               <h5>Já tem uma conta CineFlix?</h5>
 
-              <p>
-                Seu login único no nosso universo
-              </p>
+              <p>Seu login único no nosso universo</p>
 
               <Link
                 to="/login"
