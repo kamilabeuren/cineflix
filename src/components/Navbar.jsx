@@ -7,7 +7,6 @@ import {
   FaHeart,
   FaRegUser,
   FaSearch,
-  FaSignInAlt,
   FaTv,
 } from "react-icons/fa";
 import logo from "../assets/logo-cineflix.png";
@@ -15,6 +14,16 @@ import logo from "../assets/logo-cineflix.png";
 function Navbar() {
   const [mostrarBusca, setMostrarBusca] = useState(false);
   const inputBuscaRef = useRef(null);
+
+  const usuarioLogado = JSON.parse(
+    localStorage.getItem("usuarioLogado")
+  );
+
+  const primeiroNome =
+    usuarioLogado?.nome?.split(" ")[0] || "";
+
+  const inicialNome =
+    usuarioLogado?.nome?.charAt(0)?.toUpperCase() || "";
 
   const alternarBusca = () => {
     setMostrarBusca((buscaAberta) => {
@@ -45,20 +54,25 @@ function Navbar() {
 
             <div className="col-4 col-sm-4 text-center">
               <Link to="/">
-                <img src={logo} alt="CineFlix" className="navbar-logo" />
+                <img
+                  src={logo}
+                  alt="CineFlix"
+                  className="navbar-logo"
+                />
               </Link>
             </div>
 
             <div className="col-6 col-sm-4 d-flex justify-content-end align-items-center gap-2 gap-sm-3">
               <form
-                className={`search-wrapper ${mostrarBusca ? "open" : ""}`}
+                className={`search-wrapper ${
+                  mostrarBusca ? "open" : ""
+                }`}
                 role="search"
-                onSubmit={(event) => event.preventDefault()}
+                onSubmit={(e) => e.preventDefault()}
               >
                 <button
                   type="button"
                   className="search-button"
-                  aria-label={mostrarBusca ? "Fechar busca" : "Abrir busca"}
                   onClick={alternarBusca}
                 >
                   <FaSearch size={14} />
@@ -69,18 +83,22 @@ function Navbar() {
                   type="text"
                   className="form-control search-input"
                   placeholder="Buscar"
-                  aria-label="Buscar filmes"
                   tabIndex={mostrarBusca ? 0 : -1}
                 />
               </form>
 
               <div className="navbar-divider" />
 
-              <Link to="/login" className="btn text-white border-0 p-0">
+              <Link
+                to={
+                  usuarioLogado
+                    ? "/minha-conta"
+                    : "/login"
+                }
+                className="btn text-white border-0 p-0"
+              >
                 <FaRegUser size={22} />
               </Link>
-
-
             </div>
           </div>
         </div>
@@ -99,47 +117,83 @@ function Navbar() {
             aria-label="Fechar menu"
           ></button>
 
-          <h5>Já tem uma conta CineFlix?</h5>
-          <p>Seu login único no nosso universo</p>
-          <Link
-            to="/login"
-            className="menu-login-button"
-          >
-            Entrar
-          </Link>
+          {!usuarioLogado ? (
+            <>
+              <h5>Já tem uma conta CineFlix?</h5>
+
+              <p>
+                Seu login único no nosso universo
+              </p>
+
+              <Link
+                to="/login"
+                className="menu-login-button"
+              >
+                Entrar
+              </Link>
+            </>
+          ) : (
+            <div className="d-flex align-items-center gap-3">
+              <div
+                className="rounded-circle d-flex align-items-center justify-content-center fw-bold"
+                style={{
+                  width: "55px",
+                  height: "55px",
+                  backgroundColor: "#7b001c",
+                  color: "#fff",
+                  fontSize: "1.2rem",
+                  flexShrink: 0,
+                }}
+              >
+                {inicialNome}
+              </div>
+
+              <div>
+                <div className="fw-bold text-white">
+                  {primeiroNome}
+                </div>
+
+                <Link
+                  to="/minha-conta"
+                  className="text-decoration-none text-warning"
+                >
+                  Minha Conta
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="offcanvas-body menu-body">
           <nav className="menu-links">
-            <Link to="/login">
-              <FaSignInAlt />
-              <span>Login</span>
-              <FaChevronRight className="menu-arrow" />
-            </Link>
-
-            <Link to="/minha-conta">
-              <FaRegUser />
-              <span>Minha Conta</span>
-              <FaChevronRight className="menu-arrow" />
-            </Link>
-
-            <Link to="/filmes" data-bs-dismiss="offcanvas">
+            <Link
+              to="/filmes"
+              data-bs-dismiss="offcanvas"
+            >
               <FaFilm />
               <span>Filmes</span>
               <FaChevronRight className="menu-arrow" />
             </Link>
 
-            <Link to="/series" data-bs-dismiss="offcanvas">
+            <Link
+              to="/series"
+              data-bs-dismiss="offcanvas"
+            >
               <FaTv />
               <span>Séries</span>
               <FaChevronRight className="menu-arrow" />
             </Link>
 
-            <Link to="/favoritos" data-bs-dismiss="offcanvas">
-              <FaHeart />
-              <span>Meus favoritos</span>
-              <FaChevronRight className="menu-arrow" />
-            </Link>
+            {usuarioLogado && (
+              <Link
+                to="/favoritos"
+                data-bs-dismiss="offcanvas"
+              >
+                <FaHeart />
+                <span>Meus Favoritos</span>
+                <FaChevronRight className="menu-arrow" />
+              </Link>
+            )}
           </nav>
         </div>
       </div>
