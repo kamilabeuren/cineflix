@@ -12,7 +12,6 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ADMIN DE TESTE
     if (
       email === "admin@cineflix.com" &&
       senha === "123456"
@@ -28,11 +27,10 @@ function Login() {
         JSON.stringify(admin)
       );
 
-      navigate("/");
+      navigate("/minha-conta");
       return;
     }
 
-    // USUÁRIO CADASTRADO
     const usuario = JSON.parse(
       localStorage.getItem("usuario")
     );
@@ -47,7 +45,7 @@ function Login() {
         JSON.stringify(usuario)
       );
 
-      navigate("/");
+      navigate("/minha-conta");
     } else {
       alert("E-mail ou senha inválidos");
     }
@@ -71,7 +69,7 @@ function Login() {
         >
           <div className="card-body p-4 p-md-5">
             <div className="text-center mb-4">
-              <Link to="/">
+              <Link to="/MinhaConta">
                 <img
                   src={logo}
                   alt="CineFlix"
