@@ -1,6 +1,12 @@
 const imageUrl = import.meta.env.VITE_IMG;
 
-function MovieModal({ show, handleClose, movie }) {
+function MovieModal({
+  show,
+  handleClose,
+  movie,
+  favorito = false,
+  onRemoveFavorite,
+}) {
   if (!show || !movie) return null;
 
   const title = movie.title || movie.name || "Título indisponível";
@@ -41,17 +47,70 @@ function MovieModal({ show, handleClose, movie }) {
           <h2 id="movie-modal-title">{title}</h2>
           <p>{description}</p>
 
-          <button
-            type="button"
-            className="btn btn-outline-light"
-            onClick={handleClose}
-          >
-            Fechar
-          </button>
+          <div className="d-flex gap-2 mt-3">
+
+            {favorito ? (
+              
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() => {
+                  onRemoveFavorite(movie.id);
+                  handleClose();
+                }}
+              >
+                Remover dos favoritos
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() => {
+                  const usuarioLogado = JSON.parse(
+                    localStorage.getItem("usuarioLogado")
+                  );
+
+                  if (!usuarioLogado) {
+                    alert("Faça login para adicionar favoritos.");
+                    return;
+                  }
+
+                  const chave = `favoritos_${usuarioLogado.email}`;
+
+                  const favoritos =
+                    JSON.parse(localStorage.getItem(chave)) || [];
+
+                  const existe = favoritos.some(
+                    (item) => item.id === movie.id
+                  );
+
+                  if (!existe) {
+                    favoritos.push(movie);
+
+                    localStorage.setItem(
+                      chave,
+                      JSON.stringify(favoritos)
+                    );
+                  }
+
+                  alert("Filme adicionado aos favoritos!");
+                }}
+              >
+                Adicionar aos favoritos
+              </button>
+            )}
+
+            <button
+              type="button"
+              className="btn btn-outline-light"
+              onClick={handleClose}
+            >
+              Fechar
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
 export default MovieModal;

@@ -200,7 +200,6 @@ function Navbar() {
             {usuarioLogado && (
               <Link
                 to="/favoritos"
-                data-bs-dismiss="offcanvas"
               >
                 <FaHeart />
                 <span>Meus Favoritos</span>
