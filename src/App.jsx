@@ -12,6 +12,7 @@ import AdminEditar from "./pages/AdminEditar";
 import MinhaConta from "./pages/MinhaConta";
 import Search from "./pages/Search";
 import Filmes from "./pages/Filmes";
+import Series from "./pages/Series";
 
 function AppRoutes() {
   const location = useLocation();
@@ -32,6 +33,7 @@ function AppRoutes() {
         <Route path="/minha-conta" element={<MinhaConta />} />
         <Route path="/search" element={<Search />} />
         <Route path="/filmes" element={<Filmes />} />
+        <Route path="/series" element={<Series />} />
       </Routes>
     </>
   );

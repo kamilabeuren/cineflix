@@ -189,7 +189,6 @@ function Navbar() {
 
             <Link
               to="/series"
-              data-bs-dismiss="offcanvas"
             >
               <FaTv />
               <span>Séries</span>
