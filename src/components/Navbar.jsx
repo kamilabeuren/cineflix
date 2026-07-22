@@ -181,7 +181,6 @@ function Navbar() {
           <nav className="menu-links">
             <Link
               to="/filmes"
-              data-bs-dismiss="offcanvas"
             >
               <FaFilm />
               <span>Filmes</span>

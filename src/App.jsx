@@ -11,6 +11,7 @@ import Admin from "./pages/Admin";
 import AdminEditar from "./pages/AdminEditar";
 import MinhaConta from "./pages/MinhaConta";
 import Search from "./pages/Search";
+import Filmes from "./pages/Filmes";
 
 function AppRoutes() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function AppRoutes() {
         <Route path="/admin/editar/:id" element={<AdminEditar />} />
         <Route path="/minha-conta" element={<MinhaConta />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/filmes" element={<Filmes />} />
       </Routes>
     </>
   );
