@@ -49,17 +49,17 @@ function Filmes() {
 
   return (
     <>
-      <div className="container py-5">
+      <div className="container pt-5 mt-5 pb-5">
 
-        <div className="mb-5">
-          <h1 className="text-white fw-bold">
-            Gêneros de Filmes
-          </h1>
+        <div className="text-center mb-5 pt-4">
+          <h2 className="text-white fw-bold mb-3">Filmes por gênero</h2>
 
-          <p className="text-light mt-3">
+          <p className="text-light mb-0">
             Abaixo você encontra todo o acervo de filmes
-            organizado por gêneros. Não estão inclusos
-            os filmes que ainda vão estrear no Brasil.
+            organizado por gêneros.
+          </p>
+          <p className="text-light mb-0">
+            Não estão inclusos os filmes que ainda vão estrear no Brasil.
           </p>
         </div>
 
