@@ -1,4 +1,5 @@
 import MovieCard from "./MovieCard";
+import LoadingSpinner from "./LoadingSpinner";
 
 const MovieSection = ({
   title,
@@ -26,9 +27,7 @@ const MovieSection = ({
 
       <div className="row g-2">
         {loading ? (
-          <p className="text-center text-light">
-            Carregando...
-          </p>
+          <LoadingSpinner />
         ) : (
           movies.slice(0, 4).map((movie) => (
             <div

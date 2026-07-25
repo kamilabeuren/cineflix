@@ -3,8 +3,8 @@ import { useSearchParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-const searchURL = import.meta.env.VITE_SEARCH; // https://api.themoviedb.org/3/search/movie
-const apiKey = import.meta.env.VITE_API_KEY;   // api_key=xxxxxx
+const searchURL = import.meta.env.VITE_SEARCH;
+const apiKey = import.meta.env.VITE_API_KEY;
 
 const Search = () => {
   const [searchParams] = useSearchParams();
