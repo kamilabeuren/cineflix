@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
+import ProtectRoute from "./components/ProtectRoute";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -27,13 +28,45 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/movie/:id" element={<Detalhes />} />
-        <Route path="/favoritos" element={<Favoritos />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/admin/editar/:id" element={<AdminEditar />} />
-        <Route path="/minha-conta" element={<MinhaConta />} />
         <Route path="/search" element={<Search />} />
         <Route path="/filmes" element={<Filmes />} />
         <Route path="/series" element={<Series />} />
+
+        <Route
+          path="/favoritos"
+          element={
+            <ProtectRoute>
+              <Favoritos />
+            </ProtectRoute>
+          }
+        />
+
+        <Route
+          path="/minha-conta"
+          element={
+            <ProtectRoute>
+              <MinhaConta />
+            </ProtectRoute>
+          }
+        />
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectRoute>
+              <Admin />
+            </ProtectRoute>
+          }
+        />
+
+        <Route
+          path="/admin/editar/:id"
+          element={
+            <ProtectRoute>
+              <AdminEditar />
+            </ProtectRoute>
+          }
+        />
       </Routes>
     </>
   );
