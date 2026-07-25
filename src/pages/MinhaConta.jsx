@@ -253,7 +253,7 @@ function MinhaConta() {
               name="genero"
               value={usuario.genero || ""}
               onChange={handleChange}
-              className="form-select bg-secondary bg-opacity-25 text-white border-0"
+              className="form-select bg-dark text-white border-secondary"
             >
 
               <option value="">

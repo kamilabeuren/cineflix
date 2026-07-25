@@ -347,3 +347,8 @@ footer a:hover {
 .Toastify__close-button {
   color: #fff;
 }
+
+.form-select option {
+  background-color: #212529;
+  color: white;
+}
