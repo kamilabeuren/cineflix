@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const searchURL = import.meta.env.VITE_SEARCH; // https://api.themoviedb.org/3/search/movie
 const apiKey = import.meta.env.VITE_API_KEY;   // api_key=xxxxxx
@@ -16,7 +17,7 @@ const Search = () => {
     const searchMovies = async () => {
       if (!query) return;
 
-      setLoading(true);
+      setLoading(true);  
 
       try {
         const url = `${searchURL}?${apiKey}&query=${encodeURIComponent(
@@ -46,7 +47,7 @@ const Search = () => {
       </h2>
 
       <div className="movies-container row g-3">
-        {loading && <p className="text-light">Carregando...</p>}
+        {loading && <LoadingSpinner />}
 
         {!loading && movies.length === 0 && (
           <p className="text-light">Nenhum resultado encontrado.</p>
