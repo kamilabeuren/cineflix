@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
+import { toast } from "react-toastify";
 
 function MinhaConta() {
   const navigate = useNavigate();
@@ -115,7 +116,7 @@ function MinhaConta() {
 
 
     if (!usuario.nome.trim()) {
-      alert("Informe seu nome completo!");
+      toast.error("Informe seu nome completo!");
       return;
     }
 
@@ -126,7 +127,7 @@ function MinhaConta() {
 
 
     if (!resultadoData.valido) {
-      alert(resultadoData.mensagem);
+      toast.error(resultadoData.mensagem);
       return;
     }
 
@@ -136,51 +137,43 @@ function MinhaConta() {
     if (novaSenha) {
 
       if (novaSenha !== confirmarSenha) {
-        alert("As senhas não conferem!");
+        toast.error("As senhas não conferem!");
         return;
       }
 
     }
-
-
 
     const usuarioAtualizado = {
       ...usuario,
       senha: novaSenha || usuario.senha,
     };
 
-
-
     localStorage.setItem(
       "usuarioLogado",
       JSON.stringify(usuarioAtualizado)
     );
-
 
     localStorage.setItem(
       "usuario",
       JSON.stringify(usuarioAtualizado)
     );
 
-
-
     setUsuario(usuarioAtualizado);
     setNovaSenha("");
     setConfirmarSenha("");
 
-
-
-    alert("Dados atualizados com sucesso!");
+    toast.success("✅ Dados atualizados com sucesso!");
   };
-
-
 
   const handleLogout = () => {
     localStorage.removeItem("usuarioLogado");
-    navigate("/login");
+
+    toast.info("👋 Você saiu da conta.");
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   };
-
-
 
   return (
     <div
@@ -196,24 +189,18 @@ function MinhaConta() {
         Minha Conta
       </h1>
 
-
       <p className="text-secondary mb-5">
         Gerencie seus dados cadastrais
       </p>
 
-
-
       <form onSubmit={handleSalvar}>
 
         <div className="row g-4">
-
-
-          <div className="col-md-6">
+           <div className="col-md-6">
 
             <label className="form-label">
               Nome completo
             </label>
-
 
             <FormInput
               type="text"
@@ -225,14 +212,11 @@ function MinhaConta() {
 
           </div>
 
-
-
           <div className="col-md-6">
 
             <label className="form-label">
               E-mail
             </label>
-
 
             <FormInput
               type="email"
@@ -243,15 +227,11 @@ function MinhaConta() {
 
           </div>
 
-
-
-
           <div className="col-md-6">
 
             <label className="form-label">
               Data de nascimento
             </label>
-
 
             <FormInput
               type="text"
@@ -263,15 +243,11 @@ function MinhaConta() {
 
           </div>
 
-
-
-
           <div className="col-md-6">
 
             <label className="form-label">
               Gênero
             </label>
-
 
             <select
               name="genero"
@@ -295,20 +271,13 @@ function MinhaConta() {
               <option value="Outro">
                 Outro
               </option>
-
             </select>
-
           </div>
 
-
-
-
           <div className="col-md-6">
-
             <label className="form-label">
               Nova senha
             </label>
-
 
             <FormInput
               type="password"
@@ -319,19 +288,12 @@ function MinhaConta() {
                 setNovaSenha(e.target.value)
               }
             />
-
           </div>
 
-
-
-
           <div className="col-md-6">
-
             <label className="form-label">
               Confirmar nova senha
             </label>
-
-
             <FormInput
               type="password"
               name="confirmarSenha"
@@ -341,26 +303,16 @@ function MinhaConta() {
                 setConfirmarSenha(e.target.value)
               }
             />
-
           </div>
-
-
         </div>
 
-
-
-
         <div className="mt-5 d-flex gap-3">
-
-
           <button
             type="submit"
             className="btn btn-danger px-4"
           >
             Salvar alterações
           </button>
-
-
 
           <button
             type="button"
@@ -369,17 +321,10 @@ function MinhaConta() {
           >
             Sair da conta
           </button>
-
-
         </div>
-
-
       </form>
-
-
     </div>
   );
 }
-
 
 export default MinhaConta;
