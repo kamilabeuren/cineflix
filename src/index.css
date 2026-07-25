@@ -333,3 +333,17 @@ footer a:hover {
   font-size: 1rem  !important;
   font-weight: 400  !important;
 }
+
+.Toastify__toast {
+  background: #1a1a1a;
+  color: #fff;
+  border-left: 4px solid #dc3545;
+}
+
+.Toastify__progress-bar {
+  background: #dc3545;
+}
+
+.Toastify__close-button {
+  color: #fff;
+}

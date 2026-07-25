@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import FormInput from "../components/FormInput";
+import { toast } from "react-toastify";
 
 function Cadastro() {
   const [nome, setNome] = useState("");
@@ -12,7 +13,7 @@ function Cadastro() {
     e.preventDefault();
 
     if (senha !== confirmarSenha) {
-      alert("As senhas não coincidem.");
+      toast.error("As senhas não coincidem.");
       return;
     }
 
@@ -28,7 +29,7 @@ function Cadastro() {
       JSON.stringify(novoUsuario)
     );
 
-    alert("Cadastro realizado com sucesso!");
+    toast.success("Cadastro realizado com sucesso!");
   };
 
   return (
