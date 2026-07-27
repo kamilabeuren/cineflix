@@ -103,7 +103,7 @@ function Login() {
 
               <div className="text-end mb-3">
                 <Link
-                  to="#"
+                  to="/recuperar-senha"
                   className="text-white-50 text-decoration-none"
                 >
                   Esqueceu sua senha?

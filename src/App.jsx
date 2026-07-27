@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import ProtectRoute from "./components/ProtectRoute";
-
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import RecuperarSenha from "./pages/RecuperarSenha";
 import Cadastro from "./pages/Cadastro";
 import Detalhes from "./pages/Detalhes";
 import Favoritos from "./pages/Favoritos";
@@ -31,7 +31,8 @@ function AppRoutes() {
         <Route path="/search" element={<Search />} />
         <Route path="/filmes" element={<Filmes />} />
         <Route path="/series" element={<Series />} />
-
+        <Route path="/recuperar-senha" element={<RecuperarSenha />}
+        />
         <Route
           path="/favoritos"
           element={
