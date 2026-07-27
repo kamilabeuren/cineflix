@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import MovieCard from "../components/MovieCard";
 import MovieModal from "../components/MovieModal";
 import Footer from "../components/Footer";
@@ -38,6 +39,8 @@ function Favoritos() {
       localStorage.getItem("usuarioLogado")
     );
 
+    if (!usuarioLogado) return;
+
     const chave = `favoritos_${usuarioLogado.email}`;
 
     const novaLista = favoritos.filter(
@@ -50,6 +53,8 @@ function Favoritos() {
     );
 
     setFavoritos(novaLista);
+
+    toast.info("Removido dos favoritos 🗑️");
   };
 
   return (
@@ -59,18 +64,25 @@ function Favoritos() {
       </h1>
 
       <div className="row">
-        {favoritos.map((movie) => (
-          <div
-            key={movie.id}
-            className="col-6 col-md-3 mb-4"
-          >
-            <MovieCard
-              movie={movie}
-              onMovieClick={abrirModal}
-            />
-          </div>
-        ))}
+        {favoritos.length > 0 ? (
+          favoritos.map((movie) => (
+            <div
+              key={movie.id}
+              className="col-6 col-md-3 mb-4"
+            >
+              <MovieCard
+                movie={movie}
+                onMovieClick={abrirModal}
+              />
+            </div>
+          ))
+        ) : (
+          <p className="text-white text-center">
+            Você ainda não possui favoritos.
+          </p>
+        )}
       </div>
+
       <MovieModal
         show={showModal}
         handleClose={fecharModal}
@@ -78,9 +90,8 @@ function Favoritos() {
         favorito={true}
         onRemoveFavorite={removerFavorito}
       />
-      
-      <Footer />
 
+      <Footer />
     </div>
   );
 }

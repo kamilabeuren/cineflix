@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const imageUrl = import.meta.env.VITE_IMG;
 
 function MovieModal({
@@ -13,6 +15,44 @@ function MovieModal({
   const description =
     movie.overview || "Descrição indisponível para este título.";
   const imagePath = movie.backdrop_path || movie.poster_path;
+
+  const adicionarFavorito = () => {
+    const usuarioLogado = JSON.parse(
+      localStorage.getItem("usuarioLogado")
+    );
+
+    if (!usuarioLogado) {
+      toast.error("Faça login para adicionar favoritos.");
+      return;
+    }
+
+    const chave = `favoritos_${usuarioLogado.email}`;
+
+    const favoritos =
+      JSON.parse(localStorage.getItem(chave)) || [];
+
+    const existe = favoritos.some(
+      (item) => item.id === movie.id
+    );
+
+    if (existe) {
+      toast.info("Este título já está nos favoritos.");
+      return;
+    }
+
+    favoritos.push(movie);
+
+    localStorage.setItem(
+      chave,
+      JSON.stringify(favoritos)
+    );
+
+    if (movie.name) {
+      toast.success("Série adicionada aos favoritos 🎬");
+    } else {
+      toast.success("Filme adicionado aos favoritos 🎬");
+    }
+  };
 
   return (
     <div
@@ -45,12 +85,12 @@ function MovieModal({
 
         <div className="movie-modal-content">
           <h2 id="movie-modal-title">{title}</h2>
+
           <p>{description}</p>
 
           <div className="d-flex gap-2 mt-3">
 
             {favorito ? (
-              
               <button
                 type="button"
                 className="btn btn-danger"
@@ -65,36 +105,7 @@ function MovieModal({
               <button
                 type="button"
                 className="btn btn-danger"
-                onClick={() => {
-                  const usuarioLogado = JSON.parse(
-                    localStorage.getItem("usuarioLogado")
-                  );
-
-                  if (!usuarioLogado) {
-                    alert("Faça login para adicionar favoritos.");
-                    return;
-                  }
-
-                  const chave = `favoritos_${usuarioLogado.email}`;
-
-                  const favoritos =
-                    JSON.parse(localStorage.getItem(chave)) || [];
-
-                  const existe = favoritos.some(
-                    (item) => item.id === movie.id
-                  );
-
-                  if (!existe) {
-                    favoritos.push(movie);
-
-                    localStorage.setItem(
-                      chave,
-                      JSON.stringify(favoritos)
-                    );
-                  }
-
-                  alert("Filme adicionado aos favoritos!");
-                }}
+                onClick={adicionarFavorito}
               >
                 Adicionar aos favoritos
               </button>
@@ -107,10 +118,12 @@ function MovieModal({
             >
               Fechar
             </button>
+
           </div>
         </div>
       </div>
     </div>
   );
 }
+
 export default MovieModal;
