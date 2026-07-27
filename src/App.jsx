@@ -8,8 +8,6 @@ import RecuperarSenha from "./pages/RecuperarSenha";
 import Cadastro from "./pages/Cadastro";
 import Detalhes from "./pages/Detalhes";
 import Favoritos from "./pages/Favoritos";
-import Admin from "./pages/Admin";
-import AdminEditar from "./pages/AdminEditar";
 import MinhaConta from "./pages/MinhaConta";
 import Search from "./pages/Search";
 import Filmes from "./pages/Filmes";
@@ -47,24 +45,6 @@ function AppRoutes() {
           element={
             <ProtectRoute>
               <MinhaConta />
-            </ProtectRoute>
-          }
-        />
-
-        <Route
-          path="/admin"
-          element={
-            <ProtectRoute>
-              <Admin />
-            </ProtectRoute>
-          }
-        />
-
-        <Route
-          path="/admin/editar/:id"
-          element={
-            <ProtectRoute>
-              <AdminEditar />
             </ProtectRoute>
           }
         />

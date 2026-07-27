@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 import LoadingSpinner from "../components/LoadingSpinner";
+import MovieModal from "../components/MovieModal";
 
 const searchURL = import.meta.env.VITE_SEARCH;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -10,6 +11,8 @@ const Search = () => {
   const [searchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const query = searchParams.get("q");
 
@@ -40,6 +43,16 @@ const Search = () => {
     searchMovies();
   }, [query]);
 
+  const handleOpenModal = (movie) => {
+    setSelectedMovie(movie);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedMovie(null);
+  };
+
   return (
     <div className="container mt-5 pt-4">
       <h2 className="title text-white mb-4">
@@ -57,10 +70,19 @@ const Search = () => {
           movies.length > 0 &&
           movies.map((movie) => (
             <div key={movie.id} className="col-6 col-md-3">
-              <MovieCard movie={movie} />
+              <MovieCard
+                movie={movie}
+                onMovieClick={handleOpenModal}
+              />
             </div>
           ))}
       </div>
+
+      <MovieModal
+        show={showModal}
+        handleClose={handleCloseModal}
+        movie={selectedMovie}
+      />
     </div>
   );
 };

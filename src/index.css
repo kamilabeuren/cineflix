@@ -17,50 +17,85 @@ body {
 }
 
 .search-wrapper {
-  position: relative;
-  flex: 0 0 40px;
+  display: flex;
+  align-items: center;
+
   width: 40px;
   height: 43px;
-  transition: 0.25s ease;
+
+  background: transparent;
+
+  overflow: hidden;
+
+  transition: width 0.3s ease;
+
+  flex-shrink: 0;
 }
+
 
 .search-wrapper.open {
-  flex: 1 1 120px;
-  width: 100%;
-  max-width: 230px;
-  min-width: 105px;
+  width: min(230px, 100%);
+
+  background: #212529;
+  border-radius: 20px;
 }
 
-.search-button {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 40px;
-  height: 100%;
-  padding: 0;
-  color: #ffffff;
-  background: transparent;
-  border: 0;
-  opacity: 0.9;
-}
 
 .search-input {
+  flex: 1;
+
+  width: 0 !important;
   height: 43px;
-  width: 100%;
-  padding-left: 36px !important;
-  color: #ffffff !important;
-  background-color: #212529 !important;
-  border-radius: 20px !important;
+
+  padding-left: 15px !important;
+  padding-right: 0 !important;
+
+  color: #fff !important;
+  background: transparent !important;
+
+  border: none !important;
+  outline: none !important;
   box-shadow: none !important;
+
   opacity: 0;
   pointer-events: none;
-  transition: 0.25s ease;
+
+  transition: opacity .2s ease;
 }
 
+
 .search-wrapper.open .search-input {
+  width: 100% !important;
+
   opacity: 1;
   pointer-events: auto;
+}
+
+
+.search-button {
+  width: 40px;
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  color: #fff;
+
+  background: transparent;
+
+  border: none;
+
+  cursor: pointer;
+}
+
+
+.search-button:hover {
+  color: #dc3545;
 }
 
 .search-input::placeholder {
@@ -74,9 +109,7 @@ body {
 }
 
 .navbar-divider {
-  width: 1px;
-  height: 48px;
-  background: #242424;
+  display: none;
 }
 
 .menu-cineflix {
@@ -179,35 +212,29 @@ body {
 }
 
 @media (max-width: 575.98px) {
-  .navbar-logo {
-    height: 34px;
-  }
 
   .search-wrapper {
+    width: 36px;
     height: 38px;
-    min-width: 105px;
   }
 
-  .search-wrapper:not(.open) {
-    flex-basis: 36px;
-    width: 36px;
-    min-width: 36px;
+
+  .search-wrapper.open {
+    width: min(160px, 55vw);
   }
+
 
   .search-button {
     width: 36px;
+    height: 38px;
   }
+
 
   .search-input {
     height: 38px;
-    font-size: 0.875rem;
   }
 
-  .navbar-divider {
-    height: 36px;
-  }
 }
-
 .movie-card {
   position: relative;
   display: block;
