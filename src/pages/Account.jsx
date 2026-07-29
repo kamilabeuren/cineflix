@@ -27,7 +27,6 @@ function Account() {
     }
   }, []);
 
-
   const handleChange = (e) => {
     setUser({
       ...user,
@@ -35,10 +34,8 @@ function Account() {
     });
   };
 
-
   const validateBirthDate = (date) => {
     const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-
     const result = date?.match(regex);
 
     if (!result) {
@@ -51,14 +48,11 @@ function Account() {
     const day = Number(result[1]);
     const month = Number(result[2]);
     const year = Number(result[3]);
-
-
     const birthDate = new Date(
       year,
       month - 1,
       day
     );
-
 
     if (
       birthDate.getDate() !== day ||
@@ -71,12 +65,9 @@ function Account() {
       };
     }
 
-
     const today = new Date();
-
     let age =
       today.getFullYear() - year;
-
 
     const hasNotHadBirthday =
       today.getMonth() < month - 1 ||
@@ -85,11 +76,9 @@ function Account() {
         today.getDate() < day
       );
 
-
     if (hasNotHadBirthday) {
       age--;
     }
-
 
     if (age < 18) {
       return {
@@ -98,34 +87,28 @@ function Account() {
       };
     }
 
-
     return {
       valid: true,
       message: "",
     };
   };
 
-
   const handleSave = (e) => {
     e.preventDefault();
-
 
     if (!user.name.trim()) {
       toast.error("Informe seu nome completo!");
       return;
     }
 
-
     const birthDateResult = validateBirthDate(
       user.birthDate
     );
-
 
     if (!birthDateResult.valid) {
       toast.error(birthDateResult.message);
       return;
     }
-
 
     if (newPassword) {
 
@@ -136,43 +119,37 @@ function Account() {
 
     }
 
-
     const updatedUser = {
       ...user,
       password: newPassword || user.password,
     };
-
 
     localStorage.setItem(
       "usuarioLogado",
       JSON.stringify(updatedUser)
     );
 
-
     localStorage.setItem(
       "usuario",
       JSON.stringify(updatedUser)
     );
 
-
     setUser(updatedUser);
     setNewPassword("");
     setConfirmPassword("");
 
-    toast.success("✅ Dados atualizados com sucesso!");
+    toast.success("Dados atualizados com sucesso!");
   };
-
 
   const handleLogout = () => {
     localStorage.removeItem("usuarioLogado");
 
-    toast.info("👋 Você saiu da conta.");
+    toast.info("Você saiu da conta.");
 
     setTimeout(() => {
       navigate("/login");
     }, 1000);
   };
-
 
   return (
     <div
@@ -183,25 +160,19 @@ function Account() {
         maxWidth: "1000px",
       }}
     >
-
       <h1 className="fw-bold mb-1">
         Minha Conta
       </h1>
-
       <p className="text-secondary mb-5">
         Gerencie seus dados cadastrais
       </p>
 
       <form onSubmit={handleSave}>
-
         <div className="row g-4">
-
           <div className="col-md-6">
-
             <label className="form-label">
               Nome completo
             </label>
-
             <FormInput
               type="text"
               name="name"
@@ -209,32 +180,22 @@ function Account() {
               value={user.name}
               onChange={handleChange}
             />
-
           </div>
-
-
           <div className="col-md-6">
-
             <label className="form-label">
               E-mail
             </label>
-
             <FormInput
               type="email"
               name="email"
               value={user.email}
               readOnly
             />
-
           </div>
-
-
           <div className="col-md-6">
-
             <label className="form-label">
               Data de nascimento
             </label>
-
             <FormInput
               type="text"
               name="birthDate"
@@ -242,23 +203,18 @@ function Account() {
               value={user.birthDate || ""}
               onChange={handleChange}
             />
-
           </div>
 
-
           <div className="col-md-6">
-
             <label className="form-label">
               Gênero
             </label>
-
             <select
               name="gender"
               value={user.gender || ""}
               onChange={handleChange}
               className="form-select bg-dark text-white border-secondary"
             >
-
               <option value="">
                 Selecione
               </option>
@@ -276,16 +232,11 @@ function Account() {
               </option>
 
             </select>
-
           </div>
-
-
           <div className="col-md-6">
-
             <label className="form-label">
               Nova senha
             </label>
-
             <FormInput
               type="password"
               name="password"
@@ -295,12 +246,8 @@ function Account() {
                 setNewPassword(e.target.value)
               }
             />
-
           </div>
-
-
           <div className="col-md-6">
-
             <label className="form-label">
               Confirmar nova senha
             </label>
@@ -314,22 +261,15 @@ function Account() {
                 setConfirmPassword(e.target.value)
               }
             />
-
           </div>
-
         </div>
-
-
         <div className="mt-5 d-flex gap-3">
-
           <button
             type="submit"
             className="btn btn-danger px-4"
           >
             Salvar alterações
           </button>
-
-
           <button
             type="button"
             className="btn btn-outline-light"
@@ -337,11 +277,8 @@ function Account() {
           >
             Sair da conta
           </button>
-
         </div>
-
       </form>
-
     </div>
   );
 }

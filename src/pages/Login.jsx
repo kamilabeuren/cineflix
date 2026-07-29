@@ -123,9 +123,7 @@ function Login() {
 
             </form>
 
-
             <hr />
-
 
             <p className="text-center mb-0">
               Não possui conta?{" "}
