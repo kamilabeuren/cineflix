@@ -70,7 +70,7 @@ function Login() {
           <div className="card-body p-4 p-md-5">
 
             <div className="text-center mb-4">
-              <Link to="/account">
+              <Link to="/">
                 <img
                   src={logo}
                   alt="CineFlix"
