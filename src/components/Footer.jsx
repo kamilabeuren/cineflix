@@ -31,8 +31,7 @@ const Footer = () => {
             Ajuda
           </a>
         </div>
-
-        {/* Direitos autorais */}
+        
         <p
           className="mb-4"
           style={{

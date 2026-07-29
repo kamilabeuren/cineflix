@@ -6,11 +6,11 @@ import Footer from "../components/Footer";
 const apiKey = import.meta.env.VITE_API_KEY;
 
 function Series() {
-  const [acaoAventura, setAcaoAventura] = useState([]);
-  const [animacao, setAnimacao] = useState([]);
-  const [comedia, setComedia] = useState([]);
+  const [actionAdventure, setActionAdventure] = useState([]);
+  const [animation, setAnimation] = useState([]);
+  const [comedy, setComedy] = useState([]);
   const [drama, setDrama] = useState([]);
-  const [familia, setFamilia] = useState([]);
+  const [family, setFamily] = useState([]);
   const [crime, setCrime] = useState([]);
 
   const [loading, setLoading] = useState(true);
@@ -18,12 +18,12 @@ function Series() {
   const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  const openMovie = (serie) => {
+  const openModal = (serie) => {
     setSelectedMovie(serie);
     setShowModal(true);
   };
 
-  const getSeriesByGenre = async (genreId, setState) => {
+  const fetchSeriesByGenre = async (genreId, setState) => {
     try {
       const url = `https://api.themoviedb.org/3/discover/tv?${apiKey}&with_genres=${genreId}&language=pt-BR`;
 
@@ -38,12 +38,12 @@ function Series() {
 
   useEffect(() => {
     Promise.all([
-      getSeriesByGenre(10759, setAcaoAventura), // Ação e Aventura
-      getSeriesByGenre(16, setAnimacao),        // Animação
-      getSeriesByGenre(35, setComedia),         // Comédia
-      getSeriesByGenre(18, setDrama),           // Drama
-      getSeriesByGenre(10751, setFamilia),      // Família
-      getSeriesByGenre(80, setCrime),           // Crime
+      fetchSeriesByGenre(10759, setActionAdventure),
+      fetchSeriesByGenre(16, setAnimation),
+      fetchSeriesByGenre(35, setComedy),
+      fetchSeriesByGenre(18, setDrama),
+      fetchSeriesByGenre(10751, setFamily),
+      fetchSeriesByGenre(80, setCrime),
     ]).finally(() => setLoading(false));
   }, []);
 
@@ -59,6 +59,7 @@ function Series() {
           <p className="text-light mb-0">
             Explore séries organizadas por gênero.
           </p>
+
           <p className="text-light mb-0">
             Encontre facilmente as melhores produções
             de ação, comédia, drama, animação e muito mais.
@@ -67,44 +68,44 @@ function Series() {
 
         <MovieSection
           title="Séries de Ação e Aventura"
-          movies={acaoAventura}
+          movies={actionAdventure}
           loading={loading}
-          onMovieClick={openMovie}
+          onMovieClick={openModal}
         />
 
         <MovieSection
           title="Séries de Animação"
-          movies={animacao}
+          movies={animation}
           loading={loading}
-          onMovieClick={openMovie}
+          onMovieClick={openModal}
         />
 
         <MovieSection
           title="Séries de Comédia"
-          movies={comedia}
+          movies={comedy}
           loading={loading}
-          onMovieClick={openMovie}
+          onMovieClick={openModal}
         />
 
         <MovieSection
           title="Séries de Drama"
           movies={drama}
           loading={loading}
-          onMovieClick={openMovie}
+          onMovieClick={openModal}
         />
 
         <MovieSection
           title="Séries para Família"
-          movies={familia}
+          movies={family}
           loading={loading}
-          onMovieClick={openMovie}
+          onMovieClick={openModal}
         />
 
         <MovieSection
           title="Séries Policiais"
           movies={crime}
           loading={loading}
-          onMovieClick={openMovie}
+          onMovieClick={openModal}
         />
 
       </div>

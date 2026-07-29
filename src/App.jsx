@@ -4,13 +4,13 @@ import Navbar from "./components/Navbar";
 import ProtectRoute from "./components/ProtectRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import RecuperarSenha from "./pages/RecuperarSenha";
-import Cadastro from "./pages/Cadastro";
-import Detalhes from "./pages/Detalhes";
-import Favoritos from "./pages/Favoritos";
-import MinhaConta from "./pages/MinhaConta";
+import ForgotPassword from "./pages/ForgotPassword";
+import Register from "./pages/Register";
+import MovieDetails from "./pages/MovieDetails";
+import Favorites from "./pages/Favorites";
+import Account from "./pages/Account";
 import Search from "./pages/Search";
-import Filmes from "./pages/Filmes";
+import Movies from "./pages/Movies";
 import Series from "./pages/Series";
 
 function AppRoutes() {
@@ -24,27 +24,27 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/movie/:id" element={<Detalhes />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/movie/:id" element={<MovieDetails />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/filmes" element={<Filmes />} />
+        <Route path="/movies" element={<Movies />} />
         <Route path="/series" element={<Series />} />
-        <Route path="/recuperar-senha" element={<RecuperarSenha />}
+        <Route path="/forgot-password" element={<ForgotPassword />}
         />
         <Route
-          path="/favoritos"
+          path="/favorites"
           element={
             <ProtectRoute>
-              <Favoritos />
+              <Favorites />
             </ProtectRoute>
           }
         />
 
         <Route
-          path="/minha-conta"
+          path="/account"
           element={
             <ProtectRoute>
-              <MinhaConta />
+              <Account />
             </ProtectRoute>
           }
         />

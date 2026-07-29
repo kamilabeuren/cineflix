@@ -4,55 +4,55 @@ import MovieCard from "../components/MovieCard";
 import MovieModal from "../components/MovieModal";
 import Footer from "../components/Footer";
 
-function Favoritos() {
-  const [favoritos, setFavoritos] = useState([]);
+function Favorites() {
+  const [favorites, setFavorites] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    const usuarioLogado = JSON.parse(
+    const loggedUser = JSON.parse(
       localStorage.getItem("usuarioLogado")
     );
 
-    if (!usuarioLogado) return;
+    if (!loggedUser) return;
 
-    const chave = `favoritos_${usuarioLogado.email}`;
+    const storageKey = `favoritos_${loggedUser.email}`;
 
-    const lista =
-      JSON.parse(localStorage.getItem(chave)) || [];
+    const list =
+      JSON.parse(localStorage.getItem(storageKey)) || [];
 
-    setFavoritos(lista);
+    setFavorites(list);
   }, []);
 
-  const abrirModal = (movie) => {
+  const openModal = (movie) => {
     setSelectedMovie(movie);
     setShowModal(true);
   };
 
-  const fecharModal = () => {
+  const closeModal = () => {
     setSelectedMovie(null);
     setShowModal(false);
   };
 
-  const removerFavorito = (id) => {
-    const usuarioLogado = JSON.parse(
+  const removeFavorite = (id) => {
+    const loggedUser = JSON.parse(
       localStorage.getItem("usuarioLogado")
     );
 
-    if (!usuarioLogado) return;
+    if (!loggedUser) return;
 
-    const chave = `favoritos_${usuarioLogado.email}`;
+    const storageKey = `favoritos_${loggedUser.email}`;
 
-    const novaLista = favoritos.filter(
+    const newList = favorites.filter(
       (item) => item.id !== id
     );
 
     localStorage.setItem(
-      chave,
-      JSON.stringify(novaLista)
+      storageKey,
+      JSON.stringify(newList)
     );
 
-    setFavoritos(novaLista);
+    setFavorites(newList);
 
     toast.info("Removido dos favoritos 🗑️");
   };
@@ -64,15 +64,15 @@ function Favoritos() {
       </h1>
 
       <div className="row">
-        {favoritos.length > 0 ? (
-          favoritos.map((movie) => (
+        {favorites.length > 0 ? (
+          favorites.map((movie) => (
             <div
               key={movie.id}
               className="col-6 col-md-3 mb-4"
             >
               <MovieCard
                 movie={movie}
-                onMovieClick={abrirModal}
+                onMovieClick={openModal}
               />
             </div>
           ))
@@ -85,10 +85,10 @@ function Favoritos() {
 
       <MovieModal
         show={showModal}
-        handleClose={fecharModal}
+        handleClose={closeModal}
         movie={selectedMovie}
         favorito={true}
-        onRemoveFavorite={removerFavorito}
+        onRemoveFavorite={removeFavorite}
       />
 
       <Footer />
@@ -96,4 +96,4 @@ function Favoritos() {
   );
 }
 
-export default Favoritos;
+export default Favorites;

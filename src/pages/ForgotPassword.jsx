@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import { toast } from "react-toastify";
 
-function RecuperarSenha() {
+function ForgotPassword() {
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
@@ -81,4 +81,4 @@ function RecuperarSenha() {
   );
 }
 
-export default RecuperarSenha;
+export default ForgotPassword;

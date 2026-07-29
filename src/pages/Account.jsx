@@ -3,167 +3,165 @@ import { useNavigate } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import { toast } from "react-toastify";
 
-function MinhaConta() {
+function Account() {
   const navigate = useNavigate();
 
-  const [usuario, setUsuario] = useState({
-    nome: "",
+  const [user, setUser] = useState({
+    name: "",
     email: "",
-    nascimento: "",
-    genero: "",
-    senha: "",
+    birthDate: "",
+    gender: "",
+    password: "",
   });
 
-  const [novaSenha, setNovaSenha] = useState("");
-  const [confirmarSenha, setConfirmarSenha] = useState("");
-
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
-    const usuarioLogado = JSON.parse(
+    const loggedUser = JSON.parse(
       localStorage.getItem("usuarioLogado")
     );
 
-    if (usuarioLogado) {
-      setUsuario(usuarioLogado);
+    if (loggedUser) {
+      setUser(loggedUser);
     }
   }, []);
 
 
   const handleChange = (e) => {
-    setUsuario({
-      ...usuario,
+    setUser({
+      ...user,
       [e.target.name]: e.target.value,
     });
   };
 
 
-  const validarDataNascimento = (data) => {
+  const validateBirthDate = (date) => {
     const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
 
-    const resultado = data?.match(regex);
+    const result = date?.match(regex);
 
-    if (!resultado) {
+    if (!result) {
       return {
-        valido: false,
-        mensagem: "Digite a data no formato DD/MM/AAAA.",
+        valid: false,
+        message: "Digite a data no formato DD/MM/AAAA.",
       };
     }
 
+    const day = Number(result[1]);
+    const month = Number(result[2]);
+    const year = Number(result[3]);
 
-    const dia = Number(resultado[1]);
-    const mes = Number(resultado[2]);
-    const ano = Number(resultado[3]);
 
-
-    const dataNascimento = new Date(
-      ano,
-      mes - 1,
-      dia
+    const birthDate = new Date(
+      year,
+      month - 1,
+      day
     );
 
 
-    // Verifica se a data existe
     if (
-      dataNascimento.getDate() !== dia ||
-      dataNascimento.getMonth() !== mes - 1 ||
-      dataNascimento.getFullYear() !== ano
+      birthDate.getDate() !== day ||
+      birthDate.getMonth() !== month - 1 ||
+      birthDate.getFullYear() !== year
     ) {
       return {
-        valido: false,
-        mensagem: "Digite uma data de nascimento válida.",
+        valid: false,
+        message: "Digite uma data de nascimento válida.",
       };
     }
 
 
-    // Calcula idade
-    const hoje = new Date();
+    const today = new Date();
 
-    let idade =
-      hoje.getFullYear() - ano;
+    let age =
+      today.getFullYear() - year;
 
 
-    const aindaNaoFezAniversario =
-      hoje.getMonth() < mes - 1 ||
+    const hasNotHadBirthday =
+      today.getMonth() < month - 1 ||
       (
-        hoje.getMonth() === mes - 1 &&
-        hoje.getDate() < dia
+        today.getMonth() === month - 1 &&
+        today.getDate() < day
       );
 
 
-    if (aindaNaoFezAniversario) {
-      idade--;
+    if (hasNotHadBirthday) {
+      age--;
     }
 
 
-    if (idade < 18) {
+    if (age < 18) {
       return {
-        valido: false,
-        mensagem: "É necessário ter 18 anos ou mais.",
+        valid: false,
+        message: "É necessário ter 18 anos ou mais.",
       };
     }
 
 
     return {
-      valido: true,
-      mensagem: "",
+      valid: true,
+      message: "",
     };
   };
 
 
-
-  const handleSalvar = (e) => {
+  const handleSave = (e) => {
     e.preventDefault();
 
 
-    if (!usuario.nome.trim()) {
+    if (!user.name.trim()) {
       toast.error("Informe seu nome completo!");
       return;
     }
 
 
-    const resultadoData = validarDataNascimento(
-      usuario.nascimento
+    const birthDateResult = validateBirthDate(
+      user.birthDate
     );
 
 
-    if (!resultadoData.valido) {
-      toast.error(resultadoData.mensagem);
+    if (!birthDateResult.valid) {
+      toast.error(birthDateResult.message);
       return;
     }
 
 
+    if (newPassword) {
 
-    // Só altera senha se preencher
-    if (novaSenha) {
-
-      if (novaSenha !== confirmarSenha) {
+      if (newPassword !== confirmPassword) {
         toast.error("As senhas não conferem!");
         return;
       }
 
     }
 
-    const usuarioAtualizado = {
-      ...usuario,
-      senha: novaSenha || usuario.senha,
+
+    const updatedUser = {
+      ...user,
+      password: newPassword || user.password,
     };
+
 
     localStorage.setItem(
       "usuarioLogado",
-      JSON.stringify(usuarioAtualizado)
+      JSON.stringify(updatedUser)
     );
+
 
     localStorage.setItem(
       "usuario",
-      JSON.stringify(usuarioAtualizado)
+      JSON.stringify(updatedUser)
     );
 
-    setUsuario(usuarioAtualizado);
-    setNovaSenha("");
-    setConfirmarSenha("");
+
+    setUser(updatedUser);
+    setNewPassword("");
+    setConfirmPassword("");
 
     toast.success("✅ Dados atualizados com sucesso!");
   };
+
 
   const handleLogout = () => {
     localStorage.removeItem("usuarioLogado");
@@ -174,6 +172,7 @@ function MinhaConta() {
       navigate("/login");
     }, 1000);
   };
+
 
   return (
     <div
@@ -193,10 +192,11 @@ function MinhaConta() {
         Gerencie seus dados cadastrais
       </p>
 
-      <form onSubmit={handleSalvar}>
+      <form onSubmit={handleSave}>
 
         <div className="row g-4">
-           <div className="col-md-6">
+
+          <div className="col-md-6">
 
             <label className="form-label">
               Nome completo
@@ -204,13 +204,14 @@ function MinhaConta() {
 
             <FormInput
               type="text"
-              name="nome"
+              name="name"
               placeholder="Nome completo"
-              value={usuario.nome}
+              value={user.name}
               onChange={handleChange}
             />
 
           </div>
+
 
           <div className="col-md-6">
 
@@ -221,11 +222,12 @@ function MinhaConta() {
             <FormInput
               type="email"
               name="email"
-              value={usuario.email}
+              value={user.email}
               readOnly
             />
 
           </div>
+
 
           <div className="col-md-6">
 
@@ -235,13 +237,14 @@ function MinhaConta() {
 
             <FormInput
               type="text"
-              name="nascimento"
+              name="birthDate"
               placeholder="DD/MM/AAAA"
-              value={usuario.nascimento || ""}
+              value={user.birthDate || ""}
               onChange={handleChange}
             />
 
           </div>
+
 
           <div className="col-md-6">
 
@@ -250,8 +253,8 @@ function MinhaConta() {
             </label>
 
             <select
-              name="genero"
-              value={usuario.genero || ""}
+              name="gender"
+              value={user.gender || ""}
               onChange={handleChange}
               className="form-select bg-dark text-white border-secondary"
             >
@@ -271,48 +274,61 @@ function MinhaConta() {
               <option value="Outro">
                 Outro
               </option>
+
             </select>
+
           </div>
 
+
           <div className="col-md-6">
+
             <label className="form-label">
               Nova senha
             </label>
 
             <FormInput
               type="password"
-              name="senha"
+              name="password"
               placeholder="Digite uma nova senha"
-              value={novaSenha}
+              value={newPassword}
               onChange={(e) =>
-                setNovaSenha(e.target.value)
+                setNewPassword(e.target.value)
               }
             />
+
           </div>
 
+
           <div className="col-md-6">
+
             <label className="form-label">
               Confirmar nova senha
             </label>
+
             <FormInput
               type="password"
-              name="confirmarSenha"
+              name="confirmPassword"
               placeholder="Confirme a nova senha"
-              value={confirmarSenha}
+              value={confirmPassword}
               onChange={(e) =>
-                setConfirmarSenha(e.target.value)
+                setConfirmPassword(e.target.value)
               }
             />
+
           </div>
+
         </div>
 
+
         <div className="mt-5 d-flex gap-3">
+
           <button
             type="submit"
             className="btn btn-danger px-4"
           >
             Salvar alterações
           </button>
+
 
           <button
             type="button"
@@ -321,10 +337,13 @@ function MinhaConta() {
           >
             Sair da conta
           </button>
+
         </div>
+
       </form>
+
     </div>
   );
 }
 
-export default MinhaConta;
+export default Account;

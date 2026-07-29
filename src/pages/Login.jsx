@@ -5,7 +5,7 @@ import logo from "../assets/logo-cineflix.png";
 
 function Login() {
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -14,10 +14,10 @@ function Login() {
 
     if (
       email === "admin@cineflix.com" &&
-      senha === "123456"
+      password === "123456"
     ) {
       const admin = {
-        nome: "Administrador",
+        name: "Administrador",
         email: "admin@cineflix.com",
         role: "admin",
       };
@@ -27,25 +27,25 @@ function Login() {
         JSON.stringify(admin)
       );
 
-      navigate("/minha-conta");
+      navigate("/account");
       return;
     }
 
-    const usuario = JSON.parse(
+    const user = JSON.parse(
       localStorage.getItem("usuario")
     );
 
     if (
-      usuario &&
-      email === usuario.email &&
-      senha === usuario.senha
+      user &&
+      email === user.email &&
+      password === user.password
     ) {
       localStorage.setItem(
         "usuarioLogado",
-        JSON.stringify(usuario)
+        JSON.stringify(user)
       );
 
-      navigate("/minha-conta");
+      navigate("/account");
     } else {
       alert("E-mail ou senha inválidos");
     }
@@ -55,10 +55,10 @@ function Login() {
     <>
       <div
         className="container-fluid min-vh-100 d-flex justify-content-center align-items-center"
-          style={{
-            background:
-                "radial-gradient(ellipse at center, #2b2b2b 0%, #111111 40%, #000000 80%)",
-          }}
+        style={{
+          background:
+            "radial-gradient(ellipse at center, #2b2b2b 0%, #111111 40%, #000000 80%)",
+        }}
       >
         <div
           className="card bg-dark text-light border-0 shadow"
@@ -68,8 +68,9 @@ function Login() {
           }}
         >
           <div className="card-body p-4 p-md-5">
+
             <div className="text-center mb-4">
-              <Link to="/MinhaConta">
+              <Link to="/account">
                 <img
                   src={logo}
                   alt="CineFlix"
@@ -83,6 +84,7 @@ function Login() {
             </p>
 
             <form onSubmit={handleSubmit}>
+
               <div className="mb-3">
                 <FormInput
                   type="email"
@@ -96,19 +98,21 @@ function Login() {
                 <FormInput
                   type="password"
                   placeholder="Senha"
-                  value={senha}
-                  onChange={(e) => setSenha(e.target.value)}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
 
+
               <div className="text-end mb-3">
                 <Link
-                  to="/recuperar-senha"
+                  to="/forgot-password"
                   className="text-white-50 text-decoration-none"
                 >
                   Esqueceu sua senha?
                 </Link>
               </div>
+
 
               <button
                 type="submit"
@@ -116,22 +120,27 @@ function Login() {
               >
                 Entrar
               </button>
+
             </form>
 
+
             <hr />
+
 
             <p className="text-center mb-0">
               Não possui conta?{" "}
               <Link
-                to="/cadastro"
+                to="/register"
                 className="text-white fw-bold text-decoration-none"
               >
                 Cadastre-se
               </Link>
             </p>
+
             <p className="text-center mb-0">
               Para testar: e-mail admin@cineflix.com e senha 123456
             </p>
+
           </div>
         </div>
       </div>

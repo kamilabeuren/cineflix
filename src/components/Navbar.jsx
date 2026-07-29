@@ -156,7 +156,7 @@ function Navbar() {
               <Link
                 to={
                   usuarioLogado
-                  ? "/minha-conta"
+                  ? "/account"
                   : "/login"
                 }
                 className="btn text-white border-0 p-0"
@@ -234,7 +234,7 @@ function Navbar() {
                 </div>
 
                 <Link
-                  to="/minha-conta"
+                  to="/account"
                   className="text-warning text-decoration-none"
                 >
                   Minha Conta
@@ -254,7 +254,7 @@ function Navbar() {
 
           <nav className="menu-links">
 
-            <Link to="/filmes">
+            <Link to="/Movies">
               <FaFilm/>
               <span>Filmes</span>
               <FaChevronRight className="menu-arrow"/>
@@ -270,7 +270,7 @@ function Navbar() {
 
             {usuarioLogado && (
 
-              <Link to="/favoritos">
+              <Link to="/favorites">
                 <FaHeart/>
                 <span>Meus Favoritos</span>
                 <FaChevronRight className="menu-arrow"/>

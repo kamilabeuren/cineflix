@@ -3,30 +3,30 @@ import { Link } from "react-router-dom";
 import FormInput from "../components/FormInput";
 import { toast } from "react-toastify";
 
-function Cadastro() {
-  const [nome, setNome] = useState("");
+function Register() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (senha !== confirmarSenha) {
+    if (password !== confirmPassword) {
       toast.error("As senhas não coincidem.");
       return;
     }
 
-    const novoUsuario = {
-      nome,
+    const newUser = {
+      name,
       email,
-      senha,
+      password,
       role: "user",
     };
 
     localStorage.setItem(
-      "usuario",
-      JSON.stringify(novoUsuario)
+      "user",
+      JSON.stringify(newUser)
     );
 
     toast.success("Cadastro realizado com sucesso!");
@@ -48,8 +48,8 @@ function Cadastro() {
             <FormInput
               type="text"
               placeholder="Nome completo"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
@@ -66,8 +66,8 @@ function Cadastro() {
             <FormInput
               type="password"
               placeholder="Senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -75,8 +75,8 @@ function Cadastro() {
             <FormInput
               type="password"
               placeholder="Confirmar senha"
-              value={confirmarSenha}
-              onChange={(e) => setConfirmarSenha(e.target.value)}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
 
@@ -99,4 +99,4 @@ function Cadastro() {
   );
 }
 
-export default Cadastro;
+export default Register;
