@@ -32,7 +32,7 @@ const MovieSection = ({
           movies.slice(0, 4).map((movie) => (
             <div
               key={movie.id}
-              className="col-6 col-md-3"
+              className="col-6 col-md-4 col-lg-3"
             >
               <MovieCard
                 movie={movie}

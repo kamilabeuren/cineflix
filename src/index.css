@@ -251,8 +251,7 @@ body {
 
 .movie-card img {
   width: 100%;
-  height: auto;
-  min-height: 150px;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
   display: block;
 }
@@ -406,4 +405,14 @@ footer a:hover {
 .form-select option {
   background-color: #212529;
   color: white;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-logo {
+    height: 36px;
+  }
+
+  .search-wrapper.open {
+    width: min(180px, 35vw);
+  }
 }
