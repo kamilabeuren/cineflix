@@ -17,6 +17,18 @@ function Register() {
       return;
     }
 
+    const users =
+      JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    const emailExists = users.some(
+      (user) => user.email === email
+    );
+
+    if (emailExists) {
+      toast.error("Este e-mail já está cadastrado.");
+      return;
+    }
+
     const newUser = {
       name,
       email,
@@ -24,9 +36,11 @@ function Register() {
       role: "user",
     };
 
+    users.push(newUser);
+
     localStorage.setItem(
-      "user",
-      JSON.stringify(newUser)
+      "usuarios",
+      JSON.stringify(users)
     );
 
     toast.success("Cadastro realizado com sucesso!");
@@ -90,7 +104,10 @@ function Register() {
 
         <p className="text-center mt-3 mb-0">
           Já possui conta?{" "}
-          <Link to="/login" className="text-white fw-bold text-decoration-none">
+          <Link
+            to="/login"
+            className="text-white fw-bold text-decoration-none"
+          >
             Entrar
           </Link>
         </p>

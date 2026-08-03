@@ -31,15 +31,16 @@ function Login() {
       return;
     }
 
-    const user = JSON.parse(
-      localStorage.getItem("usuario")
+    const users =
+      JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    const user = users.find(
+      (user) =>
+        user.email === email &&
+        user.password === password
     );
 
-    if (
-      user &&
-      email === user.email &&
-      password === user.password
-    ) {
+    if (user) {
       localStorage.setItem(
         "usuarioLogado",
         JSON.stringify(user)
@@ -68,7 +69,6 @@ function Login() {
           }}
         >
           <div className="card-body p-4 p-md-5">
-
             <div className="text-center mb-4">
               <Link to="/">
                 <img
@@ -84,7 +84,6 @@ function Login() {
             </p>
 
             <form onSubmit={handleSubmit}>
-
               <div className="mb-3">
                 <FormInput
                   type="email"
@@ -103,7 +102,6 @@ function Login() {
                 />
               </div>
 
-
               <div className="text-end mb-3">
                 <Link
                   to="/forgot-password"
@@ -113,14 +111,12 @@ function Login() {
                 </Link>
               </div>
 
-
               <button
                 type="submit"
                 className="btn btn-danger w-100 fw-bold"
               >
                 Entrar
               </button>
-
             </form>
 
             <hr />
@@ -138,7 +134,6 @@ function Login() {
             <p className="text-center mb-0">
               Para testar: e-mail admin@cineflix.com e senha 123456
             </p>
-
           </div>
         </div>
       </div>
