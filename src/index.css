@@ -353,10 +353,10 @@ body {
 }
 
 .movie-modal {
-   position: relative;
+  position: relative;
+
   width: min(650px, 95%);
-  max-height: 85vh;
-  overflow: hidden;
+  height: min(650px, 85vh);
 
   color: #ffffff;
   background: #050505;
@@ -366,6 +366,8 @@ body {
 
   display: flex;
   flex-direction: column;
+
+  overflow: hidden;
 }
 
 .movie-modal-close {
@@ -385,13 +387,21 @@ body {
 
 .movie-modal-image {
   width: 100%;
-  max-height: 300px;
+  height: 280px;
+
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .movie-modal-content {
   padding: 20px;
-  overflow-y: auto;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
 }
 
 .movie-modal-content h2 {
@@ -403,16 +413,20 @@ body {
 .movie-modal-content p {
   color: #dddddd;
   line-height: 1.6;
+
+  overflow-y: auto;
+  margin-bottom: 0;
 }
 
 @media (max-width: 768px) {
+
   .movie-modal {
     width: 95%;
-    max-height: 90vh;
+    height: 90vh;
   }
 
   .movie-modal-image {
-    height: 160px;
+    height: 180px;
   }
 
   .movie-modal-content {
