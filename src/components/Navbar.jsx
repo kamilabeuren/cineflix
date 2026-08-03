@@ -24,11 +24,14 @@ function Navbar() {
     localStorage.getItem("usuarioLogado")
   );
 
+  const nomeUsuario =
+    usuarioLogado?.nome || usuarioLogado?.name || "";
+
   const primeiroNome =
-    usuarioLogado?.nome?.split(" ")[0] || "";
+    nomeUsuario.split(" ")[0] || "";
 
   const inicialNome =
-    usuarioLogado?.nome?.charAt(0)?.toUpperCase() || "";
+    nomeUsuario.charAt(0).toUpperCase();
 
     const alternarBusca = () => {
     setMostrarBusca((estadoAtual) => {
@@ -170,25 +173,19 @@ function Navbar() {
             </>
           ) : (
 
-            <div className="d-flex align-items-center gap-3">
-              <div
-                className="rounded-circle d-flex align-items-center justify-content-center fw-bold"
-                style={{
-                  width:"55px",
-                  height:"55px",
-                  background:"#dc3545",
-                  color:"#fff"
-                }}
-              >
+            <div className="menu-user-info">
+              <div className="menu-user-avatar">
                 {inicialNome}
               </div>
-              <div>
-                <div className="fw-bold text-white">
+
+              <div className="menu-user-details">
+                <div className="menu-user-name">
                   {primeiroNome}
                 </div>
+
                 <Link
                   to="/account"
-                  className="text-warning text-decoration-none"
+                  className="menu-user-account"
                 >
                   Minha Conta
                 </Link>

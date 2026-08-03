@@ -170,6 +170,59 @@ body {
   background: #bb2d3b;
 }
 
+.menu-user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-user-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #dc3545;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.menu-user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-user-name {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.menu-user-account {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.menu-user-account:hover {
+  color: #dc3545;
+}
+
+@media (max-width: 576px) {
+  .menu-user-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .menu-user-name {
+    font-size: 0.95rem;
+  }
+}
+
 .menu-body {
   padding: 18px 0 !important;
 }
@@ -234,6 +287,14 @@ body {
     height: 38px;
   }
 
+  .menu-user-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .menu-user-name {
+    font-size: 0.95rem;
+  }
 }
 .movie-card {
   position: relative;

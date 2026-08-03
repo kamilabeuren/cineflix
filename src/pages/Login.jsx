@@ -17,7 +17,7 @@ function Login() {
       password === "123456"
     ) {
       const admin = {
-        name: "Administrador",
+        nome: "Administrador",
         email: "admin@cineflix.com",
         role: "admin",
       };
